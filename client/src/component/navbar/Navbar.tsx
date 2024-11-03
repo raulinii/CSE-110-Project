@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import "./Navbar.css";
 
 // Define the type for navigation items
@@ -16,12 +17,14 @@ const Navbar = () =>{
         { label: "User", url: "/User" }
     ];
     
-      // State to track the active item
-    const [activeUrl, setActiveUrl] = useState<string>(navItems[0].url);
+    // State to track the active item
+    const initialUrl =  localStorage.getItem("activeUrl") || '/home';
+    const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
     
-    const handleNavClick = (url: string) => {
-    setActiveUrl(url);
-    window.location.href = url;
+    const handleNavClick = (event: React.MouseEvent<HTMLButtonElement>,url: string) => {
+        setActiveUrl(url);
+        localStorage.setItem("activeUrl", url);
+        window.location.href = url;
     };
 
     return (
@@ -31,7 +34,7 @@ const Navbar = () =>{
             <li key={item.url} className="nav-item">
             <button
                 className={`nav-button ${activeUrl === item.url ? "active" : ""}`}
-                onClick={() => handleNavClick(item.url)}
+                onClick={(event) => handleNavClick(event,item.url)}
             >
                 {item.label}
             </button>
