@@ -1,0 +1,112 @@
+.main-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.category-wrapper {
+    padding: 50px; /* Reduced padding */
+    background-color: #FFCD00; /* Yellow background */
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%; /* Slightly narrower */
+    max-width: 700px; /* Limits the width on large screens */
+}
+
+.category-container {
+    display: flex;
+    gap: 40px; /* Adjusted gap for smaller size */
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.category-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 180px;
+}
+
+.category-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #182B49; /* Dark blue color */
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1.6rem; /* Slightly smaller font size */
+    padding: 10px;
+}
+
+/* Resources Section */
+.resources-section {
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+    max-width: 700px;
+}
+
+.resources-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.resources-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resources-section li {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
