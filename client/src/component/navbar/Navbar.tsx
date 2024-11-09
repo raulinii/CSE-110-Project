@@ -13,7 +13,7 @@ interface NavItem {
 const Navbar = () =>{
 
     const navItems: NavItem[] = [
-        { label: "Home", url: "/home", icon: <FaHome/> },
+        { label: "Home", url: "/", icon: <FaHome/> },
         { label: "Clock", url: "/Clock", icon: <FaClock /> },
         { label: "User", url: "/User", icon: <FaUser /> }
     ];
