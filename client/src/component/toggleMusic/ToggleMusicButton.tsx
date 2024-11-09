@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaMusic } from "react-icons/fa";
 import { ThemeContext, themes } from "../../context/ThemeContext";
 import "../ToggleButton.css";
