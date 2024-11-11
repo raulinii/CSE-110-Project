@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #e0f2fc, #b2c3d1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    color: #39a0ed;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Main content styles */
+.container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    flex-grow: 1;
+}
+
+/* Card styles */
+.card {
+    flex: 1;
+    background-color: #3b5c82;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Resources section */
+.resources {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.resources p {
+    font-weight: bold;
+    color: #333;
+}
+
+.resources ul {
+    list-style-type: none;
+    color: #666;
+    padding-left: 10px;
+}
+
+.resource-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.music-icon {
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .resources {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+}
