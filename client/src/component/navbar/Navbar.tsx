@@ -1,51 +1,51 @@
-
 import React, { useState } from "react";
-import { FaHome, FaClock, FaUser} from "react-icons/fa";
-import "./Navbar.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { FaHome, FaClock, FaUser } from "react-icons/fa";
+import "./Navbar.css"; // Ensure correct import
 
-// Define the type for navigation items
 interface NavItem {
   label: string;
   url: string;
-  icon : any;
+  icon: JSX.Element;
 }
 
-const Navbar = () =>{
+const Navbar = () => {
+  const navItems: NavItem[] = [
+    { label: "Home", url: "/", icon: <FaHome /> },
+    { label: "Clock", url: "/Clock", icon: <FaClock /> },
+    { label: "User", url: "/User", icon: <FaUser /> }
+  ];
 
-    const navItems: NavItem[] = [
-        { label: "Home", url: "/", icon: <FaHome/> },
-        { label: "Clock", url: "/Clock", icon: <FaClock /> },
-        { label: "User", url: "/User", icon: <FaUser /> }
-    ];
-    
-    // State to track the active item
-    const initialUrl =  localStorage.getItem("activeUrl") || '/home';
-    const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
-    
-    // Set active URL
-    const handleNavClick = (url: string) => {
-        setActiveUrl(url);
-        localStorage.setItem("activeUrl", url);
-        window.location.href = url;
-    };
+  const navigate = useNavigate(); // Initialize useNavigate
 
-    return (
+  // Track active item (optional)
+  const initialUrl = localStorage.getItem("activeUrl") || "/";
+  const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
+
+  const handleNavClick = (url: string) => {
+    setActiveUrl(url);
+    localStorage.setItem("activeUrl", url);
+    navigate(url); // Navigate to the new route
+  };
+
+  return (
     <nav className="navbar">
-
-        <ul className="nav-list">
+      <ul className="nav-list">
         {navItems.map((item) => (
-            <li key={item.url} className="nav-item">
+          <li key={item.url} className="nav-item">
             <button
-                className={`nav-button ${activeUrl === item.url ? "active" : ""}`}
-                onClick={() => handleNavClick(item.url)}
+              className={`nav-button ${activeUrl === item.url ? "active" : ""}`}
+              onClick={() => handleNavClick(item.url)} 
             >
-                <span className="icon">{item.icon}</span>
+              <span className="icon">{item.icon}</span>
             </button>
-            </li>
+          </li>
         ))}
-        </ul>
+      </ul>
     </nav>
-    );
+  );
 };
-    
+
+
+
 export default Navbar;
