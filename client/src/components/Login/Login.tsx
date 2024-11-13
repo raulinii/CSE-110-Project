@@ -10,10 +10,11 @@ const Login: React.FC = () => {
                 <input type="text" placeholder="Username" />
                 <input type="password" placeholder="Password" />
                 <a href="forgotPass" className="forgot-password">Forgot your password?</a>
-                <button type="submit">Login</button>
+                <button type="submit" className='loginButton'>Login</button>
                 <Link to="/signup" className="signup">New user? Sign up here!</Link>
             </div>
         </div>
+        
     );
 };
 

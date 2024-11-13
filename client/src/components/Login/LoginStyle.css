@@ -6,12 +6,16 @@
 }
 
 .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    height: 46vh;
 }
 
 input {
@@ -39,11 +43,10 @@ input:focus {
 }
 
 .signup {
-    display: block;
-    margin: -16px -20px;
     color: #575757;
     font-size: 14px;
     text-decoration: none;
+    
 }
 
 .forgot-password:hover {
@@ -63,4 +66,8 @@ button {
 
 button:hover {
     background-color: #696969;
+}
+
+.loginButton {
+    margin-top:10px;
 }
