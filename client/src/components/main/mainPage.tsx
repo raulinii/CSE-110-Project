@@ -1,8 +1,11 @@
+
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./mainPage.css";
 import logo from "./logo.png";
-import mapIcon from "./map.png"
-import capsIcon from "./caps.png"
+import mapIcon from "./map.png";
+import capsIcon from "./caps.png";
+import ucsdIcon from "./ucsd.webp";
 
 interface Category {
     id: number;
@@ -15,8 +18,13 @@ const SAMPLE_CHOICES: Category[] = [
     { id: 3, category: "Focus" }
 ];
 
-const MainPage: React.FC = () => {
+function MainPage() {
     const [categories] = useState(SAMPLE_CHOICES);
+    const navigate = useNavigate();
+
+    const handleCategoryClick = (category: string) => {
+        navigate(`/player/${category.toLowerCase()}`);
+    };
 
     return (
         <div className="main-page">
@@ -28,7 +36,12 @@ const MainPage: React.FC = () => {
                 <div className="category-wrapper">
                     <div className="category-container">
                         {categories.map((choice) => (
-                            <div key={choice.id} className="category-box">
+                            <div
+                                key={choice.id}
+                                className="category-box"
+                                onClick={() => handleCategoryClick(choice.category)}
+                                style={{ cursor: "pointer" }}
+                            >
                                 <div className="category-content">
                                     {choice.category}
                                 </div>
@@ -41,20 +54,29 @@ const MainPage: React.FC = () => {
                 <div className="resources-section">
                     <h3>Mental Health Resources:</h3>
                     <ul>
-                        <li>Mental Health Resource</li>
                         <li>
-                            <img src={mapIcon} alt="Map Icon" className="icon" />
-                            Meditation Location
+                            <img src={ucsdIcon} alt="Resource Logo" className="resource-logo" />
+                            <a href="https://studenthealth.ucsd.edu/services/mental-health/index.html" target="_blank" rel="noopener noreferrer" >
+                                Mental Health Resource
+                            </a>
                         </li>
                         <li>
-                            <img src={capsIcon} alt="CAPS Icon" className="icon" />
-                            CAPS
+                            <img src={mapIcon} alt="Resource Logo" className="resource-logo" />
+                            <a href="https://students.ucsd.edu/sponsor//ethics-spirit/meditation.html" target="_blank" rel="noopener noreferrer">
+                                Meditation Location
+                            </a>
+                        </li>
+                        <li>
+                            <img src={capsIcon} alt="Resource Logo" className="resource-logo" />
+                            <a href="https://caps.ucsd.edu/" target="_blank" rel="noopener noreferrer">
+                                CAPS
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     );
-};
+}
 
 export default MainPage;
