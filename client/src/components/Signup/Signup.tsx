@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import './SignupStyle.css';
+import { auth } from "../../firebase"; // Import from your firebase initialization
 
 const Signup: React.FC = () => {
-    // Define state for inputs
+    // State for user inputs
     const [email, setEmail] = useState<string>('');
     const [username, setUsername] = useState<string>(''); // Currently unused, but stored
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    // Handle sign-up logic
+    // Handle sign-up form submission
     const handleSignup = async (event: React.FormEvent) => {
         event.preventDefault(); // Prevent form reload on submit
 
-        // Basic password validation
+        // Validate password match
         if (password !== confirmPassword) {
             setErrorMessage("Passwords do not match.");
             return;
         }
 
         try {
-            const auth = getAuth();
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            console.log("User signed up:", user);
-            setErrorMessage(null); // Clear errors if successful
-            // Redirect user or show success message (depending on app flow)
+            console.log("User signed up:", user); // Debugging/logging user information
+            setErrorMessage(null); // Clear error message if successful
+            // Implement redirect or success message (depending on app flow)
         } catch (error: any) {
-            setErrorMessage(error.message); // Display Firebase error message
+            setErrorMessage(error.message); // Handle and display Firebase error
         }
     };
 
     return (
-        <div className='container'>
-            <form className='signup' onSubmit={handleSignup}>
+        <div className="container">
+            <form className="signup" onSubmit={handleSignup}>
                 <h1>Can’t wait to get you started!</h1>
-                {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Error message */}
+                {/* Display error messages */}
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <input
                     type="email"
                     placeholder="Email"
