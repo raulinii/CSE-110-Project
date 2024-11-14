@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase"; // Import the initialized auth instance
 import './SignupStyle.css';
 
 const Signup: React.FC = () => {
@@ -21,7 +22,6 @@ const Signup: React.FC = () => {
         }
 
         try {
-            const auth = getAuth();
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log("User signed up:", user);
