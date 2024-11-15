@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+// src/App.tsx
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import VideoPlayerView from './views/VideoPlayerView';
+import MainPageView from './views/MainPageView';
+import StopwatchTimer from './component/StopwatchTimer';
+import Layout from './Layout'; // Import the Layout component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}> {/* Use Layout as a wrapper */}
+            <Route path="/" element={<MainPageView />} />
+            <Route path="/Clock" element={<StopwatchTimer />} />
+            <Route path="/player/sleep" element={<VideoPlayerView />} />
+            <Route path="/player/stress" element={<VideoPlayerView />} />
+            <Route path="/player/focus" element={<VideoPlayerView />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
