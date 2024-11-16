@@ -1,5 +1,6 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig"; // Import Firestore instance
+import { Meditation } from "../types/Meditation";
 
 // Function to get meditations by category
 export const getMeditations = async (category: string) => {
@@ -10,7 +11,7 @@ export const getMeditations = async (category: string) => {
         // Map Firestore documents to a usable format
         return querySnapshot.docs.map((doc) => ({
             id: doc.id,
-            ...doc.data(),
+            ...doc.data() as Meditation,
         }));
     } catch (error) {
         console.error("Error getting meditations: ", error);
