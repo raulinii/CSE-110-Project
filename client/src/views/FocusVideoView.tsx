@@ -29,8 +29,17 @@ const FocusVideoView: React.FC = () => {
     fetchMeditations();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return(
+    <div>
+      <h1>Focus Meditations</h1>
+      <p>Loading...</p>
+    </div>
+    );
+  if (error) return (
+    <div>
+      <h1>Focus Meditations</h1>
+      <p>{error}</p>
+    </div>);
 
   return (
     <div>
