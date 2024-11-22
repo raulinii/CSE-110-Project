@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mainPage.css";
-import logo from "./logo.png";
-import mapIcon from "./map.png";
-import capsIcon from "./caps.png";
-import ucsdIcon from "./ucsd.webp";
+import logo from "./images/logo.png";
+import mapIcon from "./images/map.png";
+import capsIcon from "./images/caps.png";
+import ucsdIcon from "./images/ucsd.webp";
 import WelcomePopup from "./WelcomePopup"; // Import the popup component
 
 interface Category {
