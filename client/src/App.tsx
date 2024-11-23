@@ -1,6 +1,6 @@
-// src/App.tsx
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Login from './components/Login/Login'; // Import Login component
 import MainPageView from './views/MainPageView';
 import StopwatchTimer from './component/StopwatchTimer';
 import Layout from './Layout'; // Import the Layout component
@@ -13,13 +13,20 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}> {/* Use Layout as a wrapper */}
-            <Route path="/" element={<MainPageView />} />
+          {/* Login Route */}
+          <Route path="/" element={<Login />} /> {/* Start at Login page */}
+
+          {/* Protected Routes (Main App) */}
+          <Route element={<Layout />}>
+            <Route path="/main" element={<MainPageView />} />
             <Route path="/Clock" element={<StopwatchTimer />} />
             <Route path="/player/sleep" element={<SleepVideoView />} />
             <Route path="/player/stress" element={<StressVideoView />} />
             <Route path="/player/focus" element={<FocusVideoView />} />
           </Route>
+
+          {/* Redirect unknown routes */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </div>
