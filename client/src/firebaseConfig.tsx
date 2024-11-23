@@ -1,23 +1,24 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyA0m3BGx6DKaOUFHWBI_wZ2WDOmvpTer44",
-  authDomain: "mindfulu-110.firebaseapp.com",
-  projectId: "mindfulu-110",
-  storageBucket: "mindfulu-110.firebasestorage.app",
-  messagingSenderId: "882268193601",
-  appId: "1:882268193601:web:6d1098a6b077937d7dd7c0",
-  measurementId: "G-Z0MPR3R36W"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY as string,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN as string,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID as string,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET as string,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID as string,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID as string,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+export const auth = getAuth(app);
 
 export { db };

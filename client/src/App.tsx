@@ -7,6 +7,7 @@ import Layout from './Layout'; // Import the Layout component
 import SleepVideoView from './views/SleepVideoView';
 import StressVideoView from './views/StressVideoView';
 import FocusVideoView from './views/FocusVideoView';
+import ForgotPassword from './components/forgotPass/forgotPass'; // Import ForgotPassword component
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <Routes>
           {/* Login Route */}
           <Route path="/" element={<Login />} /> {/* Start at Login page */}
+          
+          {/* Forgot Password Route */}
+          <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Forgot Password page */}
 
           {/* Protected Routes (Main App) */}
           <Route element={<Layout />}>
