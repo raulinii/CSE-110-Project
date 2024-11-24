@@ -5,7 +5,7 @@
     height: 100vh;
 }
 
-.forgot-password {
+.forgot-password-form { /* Changed from .forgot-password */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,18 +19,25 @@
 }
 
 /* Heading Fix */
-h2 {
-    user-select: none; /* Prevent text selection */
-    cursor: default; /* No pointer interaction */
-    color: #333; /* Consistent color */
+.forgot-password-form h2 {
+    user-select: none;
+    cursor: default;
+    color: #333;
     margin: 0 0 10px;
     font-weight: bold;
+    text-decoration: none;
 }
 
-
+.forgot-password-form p {
+    user-select: none;
+    cursor: default;
+    margin: 10px 0;
+    color: #333;
+    text-decoration: none;
+}
 
 /* Input Field */
-input {
+.forgot-password-form input {
     display: block;
     width: 90%;
     margin: 10px 0;
@@ -41,13 +48,13 @@ input {
     outline: none;
 }
 
-input:focus {
+.forgot-password-form input:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 /* Button Styling */
-button {
+.forgot-password-form button {
     width: 100%;
     padding: 12px;
     background-color: #808080;
@@ -58,11 +65,18 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.forgot-password-form button:hover {
     background-color: #696969;
 }
 
-/* Links */
+/* Back to Login link */
+.back-to-login {
+    text-decoration: none;
+    color: #007bff;
+    margin-top: 15px;
+    font-size: 14px;
+}
 
-
-
+.back-to-login:hover {
+    text-decoration: underline;
+}

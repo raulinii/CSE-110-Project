@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebaseConfig"; // Adjust the path based on your folder structure
 import "./LoginStyle.css";
@@ -9,6 +9,9 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Initialize navigate function
+  const navigate = useNavigate();
 
   // Handle login logic
   const handleLogin = async (event: React.FormEvent) => {
@@ -25,7 +28,7 @@ const Login: React.FC = () => {
         displayName: user.displayName,
       });
       setErrorMessage(null); // Clear errors on successful login
-      // Additional actions can go here, like redirecting the user
+      navigate("/main"); // Redirect to the main page
     } catch (error: any) {
       console.error("Login failed with error code:", error.code);
       console.error("Error message:", error.message);

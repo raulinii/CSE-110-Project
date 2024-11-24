@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import './SignupStyle.css';
 import { auth } from "../../firebaseConfig"; // Import from your firebase initialization
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Signup: React.FC = () => {
     // State for user inputs
@@ -10,6 +11,9 @@ const Signup: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+    // Initialize navigate function
+    const navigate = useNavigate();
 
     // Handle sign-up form submission
     const handleSignup = async (event: React.FormEvent) => {
@@ -26,7 +30,7 @@ const Signup: React.FC = () => {
             const user = userCredential.user;
             console.log("User signed up:", user); // Debugging/logging user information
             setErrorMessage(null); // Clear error message if successful
-            // Implement redirect or success message (depending on app flow)
+            navigate('/main'); // Redirect to the main page
         } catch (error: any) {
             setErrorMessage(error.message); // Handle and display Firebase error
         }

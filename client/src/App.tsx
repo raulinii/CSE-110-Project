@@ -8,6 +8,7 @@ import SleepVideoView from './views/SleepVideoView';
 import StressVideoView from './views/StressVideoView';
 import FocusVideoView from './views/FocusVideoView';
 import ForgotPassword from './components/forgotPass/forgotPass'; // Import ForgotPassword component
+import Signup from './components/Signup/Signup'; // Import your Signup component
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Routes>
           {/* Login Route */}
           <Route path="/" element={<Login />} /> {/* Start at Login page */}
+          
+          {/* Signup Route */}
+          <Route path="/signup" element={<Signup />} /> {/* Add route for Signup page */}
           
           {/* Forgot Password Route */}
           <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Forgot Password page */}
