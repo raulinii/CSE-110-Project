@@ -23,7 +23,8 @@ export function ToggleMusicButton( ){
     }   
     const handleCanPlay = () => {
         if (audioRef.current) {
-          audioRef.current.play(); // Start playing once it's ready
+            audioRef.current.loop = true; // Enable looping
+            audioRef.current.play(); // Start playing once it's ready
         }
       };
     return (<div>
