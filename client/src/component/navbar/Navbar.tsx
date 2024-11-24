@@ -19,8 +19,8 @@ const Navbar = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   // Track active item (optional)
-  const initialUrl = localStorage.getItem("activeUrl") || "/";
-  const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
+  // const initialUrl = localStorage.getItem("activeUrl") || "/";
+  const [activeUrl, setActiveUrl] = useState<string>();
 
   const handleNavClick = (url: string) => {
     setActiveUrl(url);

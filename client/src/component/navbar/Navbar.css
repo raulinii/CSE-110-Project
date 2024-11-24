@@ -39,12 +39,14 @@
 }
 
 .nav-button:hover {
-  background-color: #333;        /* Slightly darken button on hover */
+  /* background-color: #333;    */
+       /* Slightly darken button on hover */
+  background-color: gold; 
 }
 
-.nav-button.active {
+/* .nav-button.active {
   background-color: gold; 
-}   
+}    */
 .icon {
   font-size: 24px; 
 } 
