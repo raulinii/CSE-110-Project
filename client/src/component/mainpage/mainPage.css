@@ -13,9 +13,11 @@
     display: flex;
     align-items: center;
     font-size: 1.5rem;
+    font-family: 'Cinzel Decorative', serif; /* Apply the font */
     font-weight: bold;
-    color: #333;
+    color: #2F678A; /* Custom text color */
 }
+
 
 .logo-image {
     width: 40px;
@@ -33,24 +35,27 @@
 }
 
 .category-wrapper {
-    padding: 50px; /* Reduced padding */
-    background-color: #FFCD00; /* Yellow background */
+    padding: 30px;
+    background-color: #FFCD00;
     border-radius: 16px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     margin-top: 40px;
     display: flex;
     flex-direction: column;
+    margin-right: 60px;
+    margin-left: 20px;
     align-items: center;
     justify-content: center;
-    width: 80%; /* Slightly narrower */
-    max-width: 700px; /* Limits the width on large screens */
+    width: 80%;
+    max-width: 700px;
 }
 
 .category-container {
     display: flex;
-    gap: 40px; /* Adjusted gap for smaller size */
+    gap: 40px; /* Default gap between buttons */
     justify-content: center;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
 }
 
 .category-box {
@@ -70,13 +75,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #182B49; /* Dark blue color */
+    background-color: #182B49;
     color: white;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     font-weight: bold;
-    font-size: 1.6rem; /* Slightly smaller font size */
-    padding: 10px;
+    font-size: 1.6rem;
+    padding: 0px;
 }
 
 /* Resources Section */
@@ -113,9 +118,25 @@
 }
 
 .resource-logo {
-    height: 1em; /* Matches the font size of the text */
-    width: auto; /* Maintains the aspect ratio */
+    height: 1em;
+    width: auto;
     margin-right: 8px;
     vertical-align: middle;
 }
 
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .category-container {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center align the column */
+        gap: 20px; /* Adjust gap for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-container {
+        flex-direction: column; /* Ensure buttons stack vertically on very small screens */
+        align-items: center; /* Center align */
+        gap: 15px; /* Reduce gap for compact screens */
+    }
+}
