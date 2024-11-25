@@ -1,0 +1,94 @@
+
+.stopwatch-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+  }
+  
+  .stopwatch-timer-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .time-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .time {
+    margin: 0 5px;
+    color: #333;
+  }
+  
+  .time-input {
+    width: 60px;
+    text-align: center;
+    font-size: 2.5rem;
+    border: none;
+    border-bottom: 2px solid #333;
+    margin: 0 5px;
+    outline: none;
+    color: #333;
+  }
+  
+  .time-input:focus {
+    border-color: #007bff;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .toggle-mode, .set {
+    background-color: #28a745;
+  }
+  
+  .toggle-mode:hover, .set:hover {
+    background-color: #218838;
+  }
+  
+  .reset {
+    background-color: #dc3545;
+  }
+  
+  .reset:hover {
+    background-color: #c82333;
+  }
