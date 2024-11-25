@@ -14,12 +14,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}> {/* Use Layout as a wrapper */}
-            <Route path="/" element={<MainPageView />} />
+            <Route path="/home" element={<MainPageView />} />
             <Route path="/Clock" element={<StopwatchTimer />} />
             <Route path="/player/sleep" element={<SleepVideoView />} />
             <Route path="/player/stress" element={<StressVideoView />} />
             <Route path="/player/focus" element={<FocusVideoView />} />
-          </Route>
+          </Route>++
         </Routes>
       </BrowserRouter>
     </div>
