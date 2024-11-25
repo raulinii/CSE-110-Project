@@ -84,6 +84,23 @@
     padding: 0px;
 }
 
+.category-content:hover {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2b4b80;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 0px;
+}
+
 /* Resources Section */
 .resources-section {
     margin-top: 20px;
@@ -140,3 +157,57 @@
         gap: 15px; /* Reduce gap for compact screens */
     }
 }
+
+body.dark-mode .main-page {
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f3460 100%);
+  }
+  
+  body.dark-mode .logo {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .category-wrapper {
+    background-color: #917501;
+    color: white;
+  }
+  
+  body.dark-mode .category-content {
+    background-color: #122036;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  }
+
+  body.dark-mode .category-content:hover {
+    background-color: #1c3153;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  }
+  
+  body.dark-mode .resources-section li {
+    color: #ffa500;
+  }
+  
+  body.dark-mode .resources-section li:hover {
+    color: #ff4500;
+  }
+
+  a {
+    color: #182B49; /* Standard blue for light mode */
+    text-decoration: underline; /* Underline for visibility */
+  }
+  
+  a:hover {
+    color: #007bff; /* Darker blue on hover */
+  }
+
+  /* Hyperlink styling in dark mode */
+  body.dark-mode a {
+    color: #917501; /* Bright orange for better contrast */
+    text-decoration: underline; /* Ensures it stands out */
+  }
+  
+  body.dark-mode a:hover {
+    color: #ffcc00; /* Slightly darker orange on hover for better visibility */
+  }
+  
+  
