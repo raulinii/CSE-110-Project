@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Journal from "./Journal"; // Import the Journal component
 import "./StopwatchTimer.css";
 
 const StopwatchTimer = () => {
@@ -7,13 +6,12 @@ const StopwatchTimer = () => {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   const [started, setStarted] = useState(false);
-  const [mode, setMode] = useState("stopwatch");
-  const [editing, setEditing] = useState<"hours" | "minutes" | "seconds" | null>(null);
-  const [editingValue, setEditingValue] = useState("");
-  const [editingJournal, setEditingJournal] = useState(false); // Track whether journal is being edited
-  
+  const [mode, setMode] = useState("stopwatch"); // "stopwatch" or "timer"
+  const [editing, setEditing] = useState(null); // Track which segment is being edited
+  const [editingValue, setEditingValue] = useState(""); // Temporary value for editing
+
   useEffect(() => {
-    let timer: NodeJS.Timeout | undefined;
+    let timer;
     if (started) {
       timer = setInterval(() => {
         if (mode === "stopwatch") {
@@ -77,17 +75,17 @@ const StopwatchTimer = () => {
     reset();
   };
 
-  const handleEdit = (unit: "hours" | "minutes" | "seconds") => {
-    if (!started) {
+  const handleEdit = (unit) => {
+    if (!started) {  // Only allow editing if timer is not started
       setEditing(unit);
-      if (unit === "hours") setEditingValue(hours.toString());
-      if (unit === "minutes") setEditingValue(minutes.toString());
-      if (unit === "seconds") setEditingValue(seconds.toString());
+      if (unit === "hours") setEditingValue(hours);
+      if (unit === "minutes") setEditingValue(minutes);
+      if (unit === "seconds") setEditingValue(seconds);
     }
   };
 
-  const handleTimeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/, "");
+  const handleTimeInput = (e) => {
+    const value = e.target.value.replace(/\D/, ""); // Only allow numeric input
     setEditingValue(value);
   };
 
@@ -99,7 +97,7 @@ const StopwatchTimer = () => {
     setEditing(null);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleTimeBlur();
     }
@@ -107,18 +105,8 @@ const StopwatchTimer = () => {
 
   return (
     <div className="stopwatch-timer">
-      <div className="button-container">
-        <button className="journal" onClick={() => setEditingJournal(true)}>
-          Journal
-        </button>
-      </div>
-
-      {/* Render the Journal component */}
-      {editingJournal && (
-        <Journal isOpen={editingJournal} onClose={() => setEditingJournal(false)} />
-      )}
-
       <div className="stopwatch-timer-container">
+        <h1>{mode === "stopwatch" ? "Stopwatch" : "Timer"}</h1>
         <div className="time-display">
           {editing === "hours" ? (
             <input
@@ -131,7 +119,7 @@ const StopwatchTimer = () => {
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleEdit("hours")} data-testid="hours">
+            <span className="time" onClick={() => handleEdit("hours")}>
               {hours < 10 ? "0" + hours : hours}
             </span>
           )}
@@ -147,7 +135,7 @@ const StopwatchTimer = () => {
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleEdit("minutes")} data-testid="minutes">
+            <span className="time" onClick={() => handleEdit("minutes")}>
               {minutes < 10 ? "0" + minutes : minutes}
             </span>
           )}
@@ -163,7 +151,7 @@ const StopwatchTimer = () => {
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleEdit("seconds")} data-testid="seconds">
+            <span className="time" onClick={() => handleEdit("seconds")}>
               {seconds < 10 ? "0" + seconds : seconds}
             </span>
           )}
