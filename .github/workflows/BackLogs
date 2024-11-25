@@ -1,17 +1,15 @@
-User Page(front end) 
-User Account
+1. User Page(front end) 
 User Story: As a UCSD student, I want a secure login system that saves my profile and preferences, where I can log out of my account.
-Personalized Study Timer
-User Story: As a busy student, I want a customizable timer/stopwatch that allows me to track the duration of my study sessions. It’d also be nice to have relaxing study/meditation music to enhance my studying. 
-Linked with main page
-Need to finish css file
-Journaling feature
+User Page (back end)
 
+2. User Page (back end)
+User Story: As a UCSD student, I want to be able to log out of the account after I leave.
 
-Navbar 
-As a busy student, I want the navigation bar to include a clear and accessible option to quickly access it without navigating through multiple pages.
-Soothing background music 
-User Story: As a user, I want to select from various soothing background music options, including nature sounds and lo-fi music, to enhance my meditation experience.
-Customized Meditation Videos 
-As a UCSD student, I want to have courses targeting my needs once I enter the app.
+3. Linking Backend for Personalization
+User Story: As a UCSD student, I want to be able to store my meditation preference on the website so I get customized video recommendation lists. 
 
+4. Day/Night Theme Across APP
+User Story: As a UCSD student, I want to be able to have night/day modes across the whole page so the color theme is consistent and pleasant. 
+
+5. Journaling (back end)
+User Story: As a UCSD student, I want to be able to save the journals I write on the website, so that I can securely access them later for reflection and personal growth.
