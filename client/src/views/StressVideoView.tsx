@@ -16,7 +16,7 @@ const StressVideoView: React.FC = () => {
     const fetchMeditations = async () => {
       try {
         setLoading(true);
-        const data = await getMeditations("Relax"); // Fetch meditations with category "Sleep"
+        const data = await getMeditations("Relax", "test@gmail.com"); // Fetch meditations with category "Sleep"
         setMeditations(data);
       } catch (err) {
         setError("Failed to fetch meditations. Please try again later.");
