@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import VideoPlayerView from './views/VideoPlayerView';
 import MainPageView from './views/MainPageView';
-import StopwatchTimer from './component/StopwatchTimer';
+import StopwatchTimer from './component/timerclock/StopwatchTimer';
 import Layout from './Layout'; // Import the Layout component
 
 function App() {
