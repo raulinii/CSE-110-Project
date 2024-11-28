@@ -16,10 +16,10 @@ jobs: # the things being executed
        run: |
          npm install
          npm test
-
-      # Install dependencies and run tests in the 'server' folder
-     - name: Install Dependencies and Run Tests in Server
-       working-directory: ./server
-       run: |
-         npm install
-         npm test
+     # Disable server test since don't have any.
+     #  # Install dependencies and run tests in the 'server' folder
+     # - name: Install Dependencies and Run Tests in Server
+     #   working-directory: ./server
+     #   run: |
+     #     npm install
+         # npm test
