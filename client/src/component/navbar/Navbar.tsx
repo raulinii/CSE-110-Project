@@ -11,7 +11,7 @@ interface NavItem {
 
 const Navbar = () => {
   const navItems: NavItem[] = [
-    { label: "Home", url: "/", icon: <FaHome /> },
+    { label: "Home", url: "/main", icon: <FaHome /> },
     { label: "Clock", url: "/Clock", icon: <FaClock /> },
     { label: "User", url: "/User", icon: <FaUser /> }
   ];
@@ -19,8 +19,8 @@ const Navbar = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   // Track active item (optional)
-  const initialUrl = localStorage.getItem("activeUrl") || "/";
-  const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
+  // const initialUrl = localStorage.getItem("activeUrl") || "/";
+  const [activeUrl, setActiveUrl] = useState<string>();
 
   const handleNavClick = (url: string) => {
     setActiveUrl(url);

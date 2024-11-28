@@ -1,13 +1,12 @@
 import { useRef, useState } from "react";
 import { FaMusic } from "react-icons/fa";
-import { ThemeContext, themes } from "../../context/ThemeContext";
 import "../ToggleButton.css";
 
 export function ToggleMusicButton( ){
     const musicList = [
-        { src: "/music/music1.mp3", color: "black" },
-        { src: "/music/music2.mp3", color: "yellow" },
-        { src: "/music/music3.mp3", color: "blue" },
+        { src: "", color: "black" },
+        { src: "/musics/lofi.mp3", color: "yellow" },
+        { src: "/musics/piano.mp3", color: "blue" },
     ];
      // State to track the current music index and color
   const [currentMusic, setCurrentMusic] = useState(0);
@@ -21,22 +20,22 @@ export function ToggleMusicButton( ){
         //switch to next song
         const nextMusic = (currentMusic + 1) % musicList.length;
         setCurrentMusic(nextMusic);
-        //play the next song
-        if (audioRef.current) {
-            audioRef.current.src = musicList[nextMusic].src;
-            audioRef.current.play();
-          }
     }   
+    const handleCanPlay = () => {
+        if (audioRef.current) {
+            audioRef.current.loop = true; // Enable looping
+            audioRef.current.play(); // Start playing once it's ready
+        }
+      };
     return (<div>
                  <button 
                  className="music-button"
                  onClick={handleToggleMusic}>
                     <FaMusic color={musicList[currentMusic].color} />
                  </button>
-                 {/* <audio ref={audioRef} src={musicList[currentMusic].src} /> //change to real music */}
+                 <audio ref={audioRef} src={musicList[currentMusic].src} onCanPlay={handleCanPlay}  />
             </div>
             
         )
-    // return<FaMusic/>
     
 }
