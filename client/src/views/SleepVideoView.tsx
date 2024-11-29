@@ -16,7 +16,7 @@ const SleepVideoView: React.FC = () => {
     const fetchMeditations = async () => {
       try {
         setLoading(true);
-        const data = await getMeditations("Sleep", "test@gmail.com"); // Fetch meditations with category "Sleep"
+        const data = await getMeditations("Sleep"); // Fetch meditations with category "Sleep"
         setMeditations(data);
       } catch (err) {
         setError("Failed to fetch meditations. Please try again later.");
