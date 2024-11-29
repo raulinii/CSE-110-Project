@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import './SignupStyle.css';
-import { auth } from "../../firebaseConfig"; // Import from your firebase initialization
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Signup: React.FC = () => {
-    // State for user inputs
     const [email, setEmail] = useState<string>('');
-    const [username, setUsername] = useState<string>(''); // Currently unused, but stored
+    const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    // Initialize navigate function
     const navigate = useNavigate();
 
-    // Handle sign-up form submission
     const handleSignup = async (event: React.FormEvent) => {
-        event.preventDefault(); // Prevent form reload on submit
-
-        // Validate password match
+        event.preventDefault();
         if (password !== confirmPassword) {
             setErrorMessage("Passwords do not match.");
             return;
@@ -28,11 +24,24 @@ const Signup: React.FC = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            console.log("User signed up:", user); // Debugging/logging user information
-            setErrorMessage(null); // Clear error message if successful
-            navigate('/main'); // Redirect to the main page
+
+            // Store user data in Firestore
+            const userRef = doc(db, "dummy", user.uid);
+            await setDoc(userRef, {
+                Email: email,
+                Username: username,
+                Password: password, // Avoid plaintext in production
+                familiarity: "Beginner", // Default value
+                time_choice_one: "Long", // Default value
+                time_choice_two: "Median", // Default value
+                time_choice_three: "Short" // Default value
+            });
+
+            console.log("User signed up and data stored in Firestore:", user);
+            setErrorMessage(null);
+            navigate('/main');
         } catch (error: any) {
-            setErrorMessage(error.message); // Handle and display Firebase error
+            setErrorMessage(error.message);
         }
     };
 
@@ -40,7 +49,6 @@ const Signup: React.FC = () => {
         <div className="container">
             <form className="signup" onSubmit={handleSignup}>
                 <h1>Can’t wait to get you started!</h1>
-                {/* Display error messages */}
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <input
                     type="email"
