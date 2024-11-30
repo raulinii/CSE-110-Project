@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import "./WelcomePopup.css"; // Extract styles into a separate CSS file if needed.
+import React from "react";
+import "./WelcomePopup.css";
 
-const WelcomePopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+interface WelcomePopupProps {
+  onClose: () => void;
+}
+
+const WelcomePopup: React.FC<WelcomePopupProps> = ({ onClose }) => {
   return (
     <div className="overlay">
       <div className="popup">
