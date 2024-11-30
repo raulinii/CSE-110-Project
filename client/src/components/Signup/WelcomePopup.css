@@ -33,16 +33,83 @@
   }
 
   h2 {
-    font-family: 'Cinzel Decorative', serif; /* Apply the font */
+    font-family: 'Cinzel Decorative', serif; 
     font-weight: bold;
     font-size: large;
-    color: #2F678A; /* Custom text color */
+    color: #2F678A; 
   }
 
   h4 {
-    font-family: 'Cinzel Decorative', serif; /* Apply the font */
+    font-family: 'Cinzel Decorative', serif; 
     font-size: medium;
-    color: #2F678A; /* Custom text color */
+    color: #2F678A; 
   }
 
+  .btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .btn-dark {
+    background-color: #333;
+    color: #fff; 
+  }
+  
+
+  .time-preference-dropdowns {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .time-preference-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; 
+    max-width: 400px;
+  }
+  
+  .time-preference-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #2F678A; 
+  }
+  
+  .time-preference-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60%; 
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .time-preference-select:focus {
+    outline: none;
+    border-color: #003366;
+  }
+  
+  .submit-btn {
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .submit-btn:active {
+    background-color: #002244;
+  }
   
