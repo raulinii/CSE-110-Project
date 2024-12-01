@@ -1,6 +1,12 @@
 jest.mock("firebase/firestore", () => ({
-  getFirestore: jest.fn(),
-}));
+    getFirestore: jest.fn(),
+    collection: jest.fn(() => ({
+      withConverter: jest.fn(() => ({
+        get: jest.fn(),
+      })),
+    })),
+    getDocs: jest.fn(() => Promise.resolve({ docs: [] })), // Mock a resolved empty response
+  }));
 
 import {render, screen, fireEvent} from "@testing-library/react";
 import SleepVideoView from "./SleepVideoView";
