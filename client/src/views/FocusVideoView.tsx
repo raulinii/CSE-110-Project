@@ -51,7 +51,7 @@ const FocusVideoView: React.FC = () => {
                 <div 
                 key={video.id}
                 className='video-player-container'>
-                    <ReactPlayer url={video.link} />
+                    <ReactPlayer url={video.link}  />
                 </div>
             ))}
             </div>
