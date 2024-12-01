@@ -8,14 +8,25 @@ on:
 
 jobs: # the things being executed
  tests: # the name of your status check, will become important when you do branch protection
-   runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+   # runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+   runs-on: macos-latest
    steps:
-     - uses: actions/checkout@v4 # using version 4 of Actions
-     - name: Install Dependencies and Run Tests in Client
-       working-directory: ./client
-       run: |
-         npm install
-         npm test
+     # - uses: actions/checkout@v4 # using version 4 of Actions
+     # - name: Install Dependencies and Run Tests in Client
+     #   working-directory: ./client
+     #   run: |
+     #     npm install
+     #     npm test
+      - uses: actions/checkout@v4
+      - name: Setup Node.js v23.1.0
+        uses: actions/setup-node@v3 
+        with:
+          node-version: '23.1.0'
+      - name: Install Dependencies and Run Tests in Client
+        working-directory: ./client
+        run: |
+          npm install
+          npm test
      # Disable server test since don't have any.
       # Install dependencies and run tests in the 'server' folder
      # - name: Install Dependencies and Run Tests in Server
