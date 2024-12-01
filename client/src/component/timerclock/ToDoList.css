@@ -1,0 +1,95 @@
+.todo-list-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.todo-list-popup.open {
+  display: flex;
+}
+
+.todo-list-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: left;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.todo-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center; 
+}
+
+.task-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-input-container input {
+  padding: 5px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+.add-btn {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+li .done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete-btn {
+  margin-left: auto;
+  color: red;
+  font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}

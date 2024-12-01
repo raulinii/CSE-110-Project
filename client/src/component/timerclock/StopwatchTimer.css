@@ -1,4 +1,3 @@
-/* General container for the stopwatch-timer and journal page */
 .stopwatch-timer {
   width: 100%;
   height: 100vh;
@@ -10,7 +9,6 @@
   padding-bottom: 40px;
 }
 
-/* Main container for stopwatch-timer functionality */
 .stopwatch-timer-container {
   background-color: #FFCD00;
   padding: 20px;
@@ -19,14 +17,13 @@
   text-align: center;
   width: 65%;
   max-width: 600px;
-  height: auto; /* Adjust height dynamically */
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
 }
 
-/* Styling for the time display (hours, minutes, seconds) */
 .time-display {
   font-size: 3rem;
   font-weight: bolder;
@@ -52,23 +49,31 @@
   background-color: rgba(0, 123, 255, 0.1);
 }
 
-/* Input fields for time */
 .time-input {
   font-size: 3rem;
   font-weight: bold;
+  color: #2F678A;
   width: 90px;
-  height: 40px;
+  height: auto;
   text-align: center;
   border: 2px solid #2F678A;
   border-radius: 8px;
-  color: #182B49;
   background-color: transparent;
   outline: none;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: border-color 0.3s, background-color 0.3s, transform 0.2s;
 }
 
 .time-input:focus {
   border-color: #007bff;
+  background-color: transparent;
+}
+
+.time-input::placeholder {
+  color: #2F678A;
+  opacity: 0.7;
 }
 
 input[type="number"] {
@@ -77,7 +82,6 @@ input[type="number"] {
   appearance: none; /* Disable spin buttons */
 }
 
-/* Scoped styles for buttons */
 .buttons {
   display: flex;
   justify-content: space-around;
@@ -85,28 +89,69 @@ input[type="number"] {
   margin-top: 20px;
 }
 
-/* Specific styles for stopwatch buttons */
-.stopwatch-btn {
-  background-color: #182B49;
+/* Timer button styled with navy blue */
+.timer-btn {
+  background-color: #182B49; /* Navy Blue */
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 14px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.timer-btn:hover {
+  background-color: #2F678A; /* Lighter blue for hover */
+}
+
+.timer-btn:active {
+  transform: scale(0.95);
+}
+
+/* Reset button styled as a slot */
+.reset-slot-btn {
+  background-color: #dc3545;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.reset-slot-btn:hover {
+  background-color: #c82333;
+}
+
+.reset-slot-btn:active {
+  transform: scale(0.95);
+}
+
+/* Standard stopwatch button styling */
+.stopwatch-btn {
+  background-color: #007bff;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .stopwatch-btn:hover {
-  background-color: #2F678A;
+  background-color: #0056b3;
 }
 
 .stopwatch-btn:active {
   transform: scale(0.95);
 }
 
-/* Toggle mode button */
 .toggle-mode-btn {
   background-color: #FFCD00;
   color: #182B49;
@@ -117,16 +162,6 @@ input[type="number"] {
   background-color: #FFD740;
 }
 
-/* Reset button */
-.reset-btn {
-  background-color: #dc3545;
-}
-
-.reset-btn:hover {
-  background-color: #c82333;
-}
-
-/* Journal button styling */
 .journal-btn {
   font-size: 1.5rem;
   font-weight: bold;
@@ -150,7 +185,6 @@ input[type="number"] {
   width: 100%;
 }
 
-/* Responsive design adjustments */
 @media (max-width: 768px) {
   .stopwatch-timer-container {
     padding: 15px;
@@ -193,4 +227,25 @@ input[type="number"] {
     font-size: 1.1rem;
     padding: 10px 20px;
   }
+}
+
+/* To-Do List button styled as a slot with navy blue */
+.todo {
+  background-color: #182B49; /* Navy blue background */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.todo:hover {
+  background-color: #2F678A; /* Lighter shade of navy for hover */
+}
+
+.todo:active {
+  transform: scale(0.95); /* Button press effect */
 }
