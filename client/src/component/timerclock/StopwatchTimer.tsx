@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList"; // Import the ToDoList component
 import "./StopwatchTimer.css";
+import ToggleMusicButton from "../toggleMusic/ToggleMusicButton"; 
+
 
 const StopwatchTimer: React.FC = () => {
   const [seconds, setSeconds] = useState(0);
@@ -96,6 +98,7 @@ const StopwatchTimer: React.FC = () => {
         />
       )}
 
+      <ToggleMusicButton />
       <div className="stopwatch-timer-container">
         <div className="time-display">
           {editingField === "hours" ? (
