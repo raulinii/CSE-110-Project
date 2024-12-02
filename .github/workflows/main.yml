@@ -1,0 +1,25 @@
+name: Unit Tests # name of the test
+
+on:
+ push:
+   branches: [ main ]  # or 'master' if that's your primary branch name
+ pull_request:
+   branches: [ main ] # the Github Action will activate "on" the event that you "push" to the repo
+
+jobs: # the things being executed
+ tests: # the name of your status check, will become important when you do branch protection
+   runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+   steps:
+     - uses: actions/checkout@v4 # using version 4 of Actions
+     - name: Install Dependencies and Run Tests in Client
+       working-directory: ./client
+       run: |
+         npm install
+         npm test
+     # Disable server test since don't have any.
+     #  # Install dependencies and run tests in the 'server' folder
+     # - name: Install Dependencies and Run Tests in Server
+     #   working-directory: ./server
+     #   run: |
+     #     npm install
+         # npm test
