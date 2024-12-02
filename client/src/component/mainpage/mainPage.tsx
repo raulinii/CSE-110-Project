@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mainPage.css";
-import logo from "../../resources/images/logo.png";
-import mapIcon from "../../resources/images/map.png";
-import capsIcon from "../../resources/images/caps.png";
-import ucsdIcon from "../../resources/images/ucsd.webp";
+import logo from "./images/logo.png";
+import mapIcon from "./images/map.png";
+import capsIcon from "./images/caps.png";
+import ucsdIcon from "./images/ucsd.webp";
 
 interface Category {
     id: number;

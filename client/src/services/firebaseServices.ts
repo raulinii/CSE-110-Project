@@ -21,7 +21,7 @@ export const getMeditations = async (category: string) => {
         }
 
         const userEmail = currentUser.email;
-
+        
         const userPreference = query(collection(db, "dummy"), where("Email", "==", userEmail));
         const userSnapshot = await getDocs(userPreference);
         const user = userSnapshot.docs[0].data() as User;
@@ -55,6 +55,30 @@ export const getMeditations = async (category: string) => {
 
     } catch (error) {
         console.error("Error getting meditations: ", error);
+        throw error;
+    }
+};
+
+
+export const getUserInfo = async () => {
+    try {
+
+        const currentUser = auth.currentUser;
+
+        if (!currentUser || !currentUser.email) {
+            throw new Error("No authenticated user or email not found.");
+        }
+
+        const userEmail = currentUser.email;
+        
+        const userPreference = query(collection(db, "dummy"), where("Email", "==", userEmail));
+        const userSnapshot = await getDocs(userPreference);
+        const user = userSnapshot.docs[0].data() as User;
+        
+        return user;
+
+    } catch (error) {
+        console.error("Error getting user info: ", error);
         throw error;
     }
 };

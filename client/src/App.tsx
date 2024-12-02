@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login/Login'; // Import Login component
 import MainPageView from './views/MainPageView';
 import StopwatchTimer from './component/StopwatchTimer';
-import Layout from './Layout'; // Import the Layout component
+import Layout from './Layout';
+import UserPage from './component/mainpage/UserPage'; // Add this import
 import SleepVideoView from './views/SleepVideoView';
 import StressVideoView from './views/StressVideoView';
 import FocusVideoView from './views/FocusVideoView';
@@ -29,6 +30,7 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path="/main" element={<MainPageView />} />
             <Route path="/Clock" element={<StopwatchTimer />} />
+            <Route path="/User" element={<UserPage />} /> {/* Add this route */}
             <Route path="/player/sleep" element={<SleepVideoView />} />
             <Route path="/player/stress" element={<StressVideoView />} />
             <Route path="/player/focus" element={<FocusVideoView />} />
