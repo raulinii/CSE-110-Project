@@ -19,24 +19,13 @@ const Navbar = () => {
   const navigate = useNavigate();
   // const initialUrl = localStorage.getItem("activeUrl") || "/";
   const [activeUrl, setActiveUrl] = useState<string>();
-  const [darkMode, setDarkMode] = useState<boolean>(
-    localStorage.getItem("darkMode") === "true"
-  );
-
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-    localStorage.setItem("darkMode", darkMode.toString());
-  }, [darkMode]);
-
+  
   const handleNavClick = (url: string) => {
     setActiveUrl(url);
     localStorage.setItem("activeUrl", url);
-    navigate(url);
+    navigate(url); // Navigate to the new route
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
     <nav className="navbar">
@@ -51,13 +40,6 @@ const Navbar = () => {
             </button>
           </li>
         ))}
-        <li className="nav-item">
-          <button className="nav-button" onClick={toggleDarkMode}>
-            <span className="icon">
-              {darkMode ? <FaSun /> : <FaMoon />}
-            </span>
-          </button>
-        </li>
       </ul>
     </nav>
   );

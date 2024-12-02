@@ -1,20 +1,32 @@
-import { useState } from "react";
-import { FaMoon } from "react-icons/fa";
+
 import { ThemeContext, themes } from "../../context/ThemeContext";
 import "../ToggleButton.css";
+import React, { useState, useEffect } from "react";
+import { FaHome, FaClock, FaUser, FaMoon, FaSun } from "react-icons/fa";
+
+
 
 export function ToggleThemeButton( ){
-    const [currentTheme, setCurrentTheme] = useState(themes.light);
-    const toggleTheme = () => {
-      setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
-    } 
+
+    const [darkMode, setDarkMode] = useState<boolean>(
+      localStorage.getItem("darkMode") === "true"
+    );
+  
+    useEffect(() => {
+      document.body.classList.toggle("dark-mode", darkMode);
+      localStorage.setItem("darkMode", darkMode.toString());
+    }, [darkMode]);
+  
+  
+    const toggleDarkMode = () => {
+      setDarkMode(!darkMode);
+    };
+  
     return(
       <div>
-        <button 
-        className="theme-button"
-        onClick={toggleTheme}>
-            <FaMoon color={currentTheme === themes.light ? 'navy' : 'white'} />
-        </button>
+          <button className="theme-button" onClick={toggleDarkMode}>
+              {darkMode ? <FaMoon /> : <FaSun />}
+          </button>
       </div>
     )    
 }
