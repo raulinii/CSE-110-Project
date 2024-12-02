@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import ToDoList from './ToDoList'; // Adjust the import if necessary
-import { act } from 'react';
+import ToDoList from './ToDoList'; 
+
 
 describe("ToDoList Component", () => {
   const mockUpdateTasks = jest.fn();
@@ -201,7 +201,6 @@ describe("ToDoList Component", () => {
     // Unmark the completed task
     fireEvent.click(checkbox);
 
-    // Check if updateTasks was called with the updated task
     expect(mockUpdateTasks).toHaveBeenCalledWith([
       { text: "Sample task 1", completed: false },
       { text: "Sample task 2", completed: false },

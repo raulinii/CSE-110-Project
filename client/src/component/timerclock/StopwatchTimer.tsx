@@ -109,12 +109,15 @@ const StopwatchTimer: React.FC = () => {
               value={hours}
               min="0"
               max="99"
+              data-testid="hours-input"
               onBlur={() => setEditingField(null)} // Exit edit mode on blur
               onChange={(e) => handleFieldChange(e.target.value, "hours")}
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleFieldClick("hours")}>
+            <span className="time"  
+            data-testid="hours-span"
+            onClick={() => handleFieldClick("hours")}>
               {String(hours).padStart(2, "0")}
             </span>
           )}
@@ -126,12 +129,15 @@ const StopwatchTimer: React.FC = () => {
               value={minutes}
               min="0"
               max="59"
+              data-testid="minutes-input"
               onBlur={() => setEditingField(null)}
               onChange={(e) => handleFieldChange(e.target.value, "minutes")}
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleFieldClick("minutes")}>
+            <span className="time" 
+            data-testid="minutes-span"
+            onClick={() => handleFieldClick("minutes")}>
               {String(minutes).padStart(2, "0")}
             </span>
           )}
@@ -143,12 +149,15 @@ const StopwatchTimer: React.FC = () => {
               value={seconds}
               min="0"
               max="59"
+              data-testid="seconds-input"
               onBlur={() => setEditingField(null)}
               onChange={(e) => handleFieldChange(e.target.value, "seconds")}
               autoFocus
             />
           ) : (
-            <span className="time" onClick={() => handleFieldClick("seconds")}>
+            <span className="time" 
+            data-testid="seconds-span"
+            onClick={() => handleFieldClick("seconds")}>
               {String(seconds).padStart(2, "0")}
             </span>
           )}

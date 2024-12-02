@@ -1,210 +1,130 @@
-// import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-// import StopwatchTimer from './StopwatchTimer'; // Adjust the import if needed
-// import { act } from 'react';
-
-// describe("StopwatchTimer Component", () => {
-//   test("renders stopwatch timer and starts in stopwatch mode", () => {
-//     render(<StopwatchTimer />);
-
-//     // Match the initial "00:00:00" parts
-//     const timeDisplay = screen.getAllByText("00");
-//     expect(timeDisplay.length).toBeGreaterThan(0); // Expect to find "00" in time display
-//   });
-
-//   test("stopwatch starts and increments time correctly", async () => {
-//     render(<StopwatchTimer />);
-
-//     // Start the stopwatch
-//     const startButton = screen.getByText("Start");
-//     fireEvent.click(startButton);
-
-//     // Wait for the stopwatch to increment to 03 seconds
-//     await waitFor(() => {
-//       const secondDisplay = screen.getByText((content, element) => 
-//         content.includes("03") && element.tagName.toLowerCase() === 'span'
-//       );
-//       expect(secondDisplay).toBeInTheDocument(); 
-//     }, { timeout: 4000 });
-//   });
-
-//   test("stopwatch stops and retains current time", async () => {
-//     render(<StopwatchTimer />);
-
-//     // Start the stopwatch
-//     const startButton = screen.getByText("Start");
-//     fireEvent.click(startButton);
-
-//     // Wait for the stopwatch to increment to 03 seconds
-//     await waitFor(() => {
-//       const secondDisplay = screen.getByText((content, element) => 
-//         content.includes("03") && element.tagName.toLowerCase() === 'span'
-//       );
-//       expect(secondDisplay).toBeInTheDocument();
-//     }, { timeout: 4000 });
-
-//     // Stop the stopwatch
-//     const stopButton = screen.getByText("Stop");
-//     fireEvent.click(stopButton);
-
-//     // Ensure that the time is still "03" seconds after stop
-//     await waitFor(() => {
-//       const secondDisplay = screen.getByText((content, element) => 
-//         content.includes("03") && element.tagName.toLowerCase() === 'span'
-//       );
-//       expect(secondDisplay).toBeInTheDocument();
-//     });
-//   });
-
-//   test("reset button resets the stopwatch to 00:00:00", () => {
-//     render(<StopwatchTimer />);
-
-//     // Start and stop the stopwatch
-//     const startButton = screen.getByText("Start");
-//     fireEvent.click(startButton);
-//     setTimeout(() => {
-//       const stopButton = screen.getByText("Stop");
-//       fireEvent.click(stopButton);
-//     }, 2000);
-
-//     // Wait for some time and ensure the stopwatch stopped
-//     setTimeout(() => {
-//       const resetButton = screen.getByText("Reset");
-//       fireEvent.click(resetButton);
-
-//       // Check if the time reset to 00:00:00
-//       const resetDisplay = screen.getAllByText("00");
-//       expect(resetDisplay.length).toBeGreaterThan(0);
-//     }, 3000);
-//   });
-
-//   test("switching to timer mode and setting a timer works", () => {
-//     render(<StopwatchTimer />);
-
-//     // Switch to timer mode (assuming button is "Timer" or similar)
-//     const timerButton = screen.getByText("Timer");
-//     fireEvent.click(timerButton);
-
-//     // Check if timer mode UI appears, assuming "Set Timer" is part of the UI
-//     expect(screen.getByText("Stopwatch")).toBeInTheDocument();
-
-//     // Check for time reset
-//     //const timerTimeDisplay = screen.getByText("00");
-
-//     const timerTimeDisplay = screen.getAllByText("00");
-//     expect(timerTimeDisplay.length).toBeGreaterThan(0);
-//   });
-// });
-
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import StopwatchTimer from './StopwatchTimer'; // Adjust the import if needed
+import StopwatchTimer from './StopwatchTimer';
 
-describe("StopwatchTimer Component", () => {
-  
-  test("renders stopwatch timer and starts in stopwatch mode", () => {
+describe('StopwatchTimer Component', () => {
+  test('renders stopwatch timer and starts in stopwatch mode', () => {
     render(<StopwatchTimer />);
 
-    // Match the initial "00:00:00" parts
-    const timeDisplay = screen.getAllByText("00");
-    expect(timeDisplay.length).toBeGreaterThan(0); // Expect to find "00" in time display
+    const timeDisplay = screen.getByTestId('hours-span');
+    expect(timeDisplay).toHaveTextContent('00');
   });
 
-  test("stopwatch starts and increments time correctly", async () => {
+  test('stopwatch starts and increments time correctly', async () => {
     render(<StopwatchTimer />);
 
     // Start the stopwatch
-    const startButton = screen.getByText("Start");
+    const startButton = screen.getByText('Start');
     fireEvent.click(startButton);
 
     // Wait for the stopwatch to increment to 03 seconds
     await waitFor(() => {
-      const secondDisplay = screen.queryByText("03");
-      expect(secondDisplay).toBeInTheDocument(); // Check if "03" is displayed
+      const secondsDisplay = screen.getByTestId('seconds-span');
+      expect(secondsDisplay).toHaveTextContent('03');
     }, { timeout: 4000 });
   });
 
-  test("stopwatch stops and retains current time", async () => {
+  test('stopwatch stops and retains current time', async () => {
     render(<StopwatchTimer />);
 
     // Start the stopwatch
-    const startButton = screen.getByText("Start");
+    const startButton = screen.getByText('Start');
     fireEvent.click(startButton);
 
     // Wait for the stopwatch to increment to 03 seconds
     await waitFor(() => {
-      const secondDisplay = screen.queryByText("03");
-      expect(secondDisplay).toBeInTheDocument(); // Check if "03" is displayed
+      const secondsDisplay = screen.getByTestId('seconds-span');
+      expect(secondsDisplay).toHaveTextContent('03');
     }, { timeout: 4000 });
 
     // Stop the stopwatch
-    const stopButton = screen.getByText("Stop");
+    const stopButton = screen.getByText('Stop');
     fireEvent.click(stopButton);
 
     // Ensure that the time is still "03" seconds after stop
-    await waitFor(() => {
-      const secondDisplay = screen.queryByText("03");
-      expect(secondDisplay).toBeInTheDocument(); // Ensure "03" is still displayed
-    });
+    const secondsDisplay = screen.getByTestId('seconds-span');
+    expect(secondsDisplay).toHaveTextContent('03');
   });
 
-  test("reset button resets the stopwatch to 00:00:00", async () => {
+  test('reset button resets the stopwatch to 00:00:00', async () => {
     render(<StopwatchTimer />);
 
-    // Start and stop the stopwatch
-    const startButton = screen.getByText("Start");
+    // Start the stopwatch
+    const startButton = screen.getByText('Start');
     fireEvent.click(startButton);
-    setTimeout(() => {
-      const stopButton = screen.getByText("Stop");
-      fireEvent.click(stopButton);
-    }, 2000);
 
-    // Wait for some time and ensure the stopwatch stopped
-    setTimeout(() => {
-      const resetButton = screen.getByText("Reset");
-      fireEvent.click(resetButton);
+    // Wait for 03 seconds
+    await waitFor(() => {
+      const secondsDisplay = screen.getByTestId('seconds-span');
+      expect(secondsDisplay).toHaveTextContent('03');
+    }, { timeout: 4000 });
 
-      // Check if the time reset to 00:00:00
-      const resetDisplay = screen.queryByText("00");
-      expect(resetDisplay).toBeInTheDocument(); // Ensure reset display is "00"
-    }, 3000);
+    // Stop the stopwatch
+    const stopButton = screen.getByText('Stop');
+    fireEvent.click(stopButton);
+
+    // Click the reset button
+    const resetButton = screen.getByText('Reset');
+    fireEvent.click(resetButton);
+
+    // Ensure time is reset
+    const hoursDisplay = screen.getByTestId('hours-span');
+    const minutesDisplay = screen.getByTestId('minutes-span');
+    const secondsDisplay = screen.getByTestId('seconds-span');
+    expect(hoursDisplay).toHaveTextContent('00');
+    expect(minutesDisplay).toHaveTextContent('00');
+    expect(secondsDisplay).toHaveTextContent('00');
   });
 
-  test("switching to timer mode and setting a timer works", async () => {
+  test('switching to timer mode and setting a timer works', async () => {
     render(<StopwatchTimer />);
 
-    // Switch to timer mode (assuming button is "Timer" or similar)
-    const timerButton = screen.getByText("Timer");
-    fireEvent.click(timerButton);
+    // Switch to timer mode
+    const modeButton = screen.getByText('Timer');
+    fireEvent.click(modeButton);
 
-    // Check if timer mode UI appears, assuming "Stopwatch" is part of the UI
-    expect(screen.getByText("Stopwatch")).toBeInTheDocument();
+    // Check if the mode is switched back to Stopwatch
+    const stopwatchButton = screen.getByText('Stopwatch');
+    expect(stopwatchButton).toBeInTheDocument();
 
     // Check for time reset
-    const timerTimeDisplay = screen.getAllByText("00");
-    expect(timerTimeDisplay.length).toBeGreaterThan(0); // Ensure timer display is "00"
+    const hoursDisplay = screen.getByTestId('hours-span');
+    const minutesDisplay = screen.getByTestId('minutes-span');
+    const secondsDisplay = screen.getByTestId('seconds-span');
+    expect(hoursDisplay).toHaveTextContent('00');
+    expect(minutesDisplay).toHaveTextContent('00');
+    expect(secondsDisplay).toHaveTextContent('00');
   });
 
-  test("stopwatch timer starts from a specific value when set", async () => {
+  test('timer starts from a specific value when set', async () => {
     render(<StopwatchTimer />);
 
-    // Set timer mode first
-    const timerButton = screen.getByText("Timer");
+    // Switch to timer mode
+    const timerButton = screen.getByText('Timer');
     fireEvent.click(timerButton);
 
-    // Change the time to 01:30
-    const hoursInput = screen.getByLabelText("Hours");
-    const minutesInput = screen.getByLabelText("Minutes");
+    // Simulate setting hours and minutes
+    const hoursSpan = screen.getByTestId('hours-span');
+    fireEvent.click(hoursSpan);
+    const hoursInput = screen.getByTestId('hours-input');
     fireEvent.change(hoursInput, { target: { value: '1' } });
+    fireEvent.blur(hoursInput);
+
+    const minutesSpan = screen.getByTestId('minutes-span');
+    fireEvent.click(minutesSpan);
+    const minutesInput = screen.getByTestId('minutes-input');
     fireEvent.change(minutesInput, { target: { value: '30' } });
+    fireEvent.blur(minutesInput);
 
     // Start the timer
-    const startButton = screen.getByText("Start");
+    const startButton = screen.getByText('Start');
     fireEvent.click(startButton);
 
-    // Wait for the timer to start and display the correct time
+    // Wait for the timer to display 01:30:00
     await waitFor(() => {
-      const timeDisplay = screen.queryByText("01:30:00");
-      expect(timeDisplay).toBeInTheDocument(); // Ensure time starts correctly
-    }, { timeout: 4000 });
+      const hoursDisplay = screen.getByTestId('hours-span');
+      const minutesDisplay = screen.getByTestId('minutes-span');
+      expect(hoursDisplay).toHaveTextContent('01');
+      expect(minutesDisplay).toHaveTextContent('30');
+    });
   });
-
 });
