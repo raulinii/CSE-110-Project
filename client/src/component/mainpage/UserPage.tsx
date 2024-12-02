@@ -1,119 +1,6 @@
-// // UserPage.tsx
-// import React, { useState, useEffect } from 'react';
-// import './UserPage.css';
-// import logo from "./images/logo.png";
-
-// interface UserSettings {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   videoLength: 'short' | 'medium' | 'long';
-//   meditationExperience: 'Beginner' | 'Occasionally' | 'Regularly';
-// }
-
-// const UserPage: React.FC = () => {
-//   const [userSettings, setUserSettings] = useState<UserSettings>({
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     email: 'john.doe@example.com',
-//     videoLength: 'medium',
-//     meditationExperience: 'Occasionally',
-//   });
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-//     const { name, value } = e.target;
-//     setUserSettings(prevSettings => ({
-//       ...prevSettings,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     // Here you would typically send the updated settings to your backend
-//     console.log('Updated settings:', userSettings);
-//     // You can add a success message or redirect the user
-//   };
-
-//   return (
-//     <div className="user-page">
-//       <div className="logo">
-//         <img src={logo} alt="MindfulU Logo" className="logo-image" />
-//         <span>Mindful U</span>
-//       </div>
-//       <div className="user-container">
-//         <h2>User Profile</h2>
-//         <form onSubmit={handleSubmit}>
-//           <div className="form-group">
-//             <label htmlFor="firstName">First Name</label>
-//             <input
-//               type="text"
-//               id="firstName"
-//               name="firstName"
-//               value={userSettings.firstName}
-//               onChange={handleChange}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="lastName">Last Name</label>
-//             <input
-//               type="text"
-//               id="lastName"
-//               name="lastName"
-//               value={userSettings.lastName}
-//               onChange={handleChange}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="email">Email Address</label>
-//             <input
-//               type="email"
-//               id="email"
-//               name="email"
-//               value={userSettings.email}
-//               onChange={handleChange}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="videoLength">Preferred Video Length</label>
-//             <select
-//               id="videoLength"
-//               name="videoLength"
-//               value={userSettings.videoLength}
-//               onChange={handleChange}
-//             >
-//               <option value="short">Short</option>
-//               <option value="medium">Medium</option>
-//               <option value="long">Long</option>
-//             </select>
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="meditationExperience">Meditation Experience</label>
-//             <select
-//               id="meditationExperience"
-//               name="meditationExperience"
-//               value={userSettings.meditationExperience}
-//               onChange={handleChange}
-//             >
-//               <option value="Beginner">Beginner</option>
-//               <option value="Occasionally">Occasionally</option>
-//               <option value="Regularly">Regularly</option>
-//             </select>
-//           </div>
-//           <button type="submit" className="save-button">Save Changes</button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UserPage;
-
-
 // src/component/user/UserPage.tsx
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc, Firestore } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import './UserPage.css';
 import logo from '../mainpage/images/logo.png';
@@ -130,27 +17,37 @@ interface UserData {
 const UserPage: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const auth = getAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Initially true for dummy data
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
-      if (user) {
-        try {
-          const docRef = doc(db, "dummy", user.uid);
-          const docSnap = await getDoc(docRef);
-          
-          if (docSnap.exists()) {
-            setUserData(docSnap.data() as UserData);
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
+    const fetchDummyData = async () => {
+      if (!isLoggedIn) {
+        setUserData(null);
+        setLoading(false);
+        return;
       }
-      setLoading(false);
-    });
 
-    return () => unsubscribe();
-  }, []);
+      try {
+        const docRef = doc(db, "dummy", "il4scSXsB0dS0mceoMal");
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setUserData(docSnap.data() as UserData);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching dummy data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchDummyData();
+  }, [isLoggedIn]);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserData(null);
+  };
 
   if (loading) {
     return (
@@ -160,10 +57,16 @@ const UserPage: React.FC = () => {
     );
   }
 
-  if (!userData) {
+  if (!isLoggedIn || !userData) {
     return (
       <div className="user-page">
-        <div className="error">Please log in to view your profile</div>
+        <div className="logo">
+          <img src={logo} alt="MindfulU Logo" className="logo-image" />
+          <span>Mindful U</span>
+        </div>
+        <div className="user-container">
+          <div className="error">Please log in first to view your profile</div>
+        </div>
       </div>
     );
   }
@@ -207,9 +110,14 @@ const UserPage: React.FC = () => {
             </div>
           </div>
         </div>
+        <button className="logout-button" onClick={handleLogout}>
+          Log Out
+        </button>
       </div>
     </div>
   );
 };
 
 export default UserPage;
+
+
