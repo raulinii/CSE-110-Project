@@ -1,11 +1,14 @@
 import { auth } from "../../firebaseConfig";
 import { signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const SignOutButton: React.FC = () => {
+  const navigate = useNavigate();
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       console.log("Sign-out successful.");
+      navigate("/"); 
       // Optionally redirect or show a success message
     } catch (error) {
       console.error("An error occurred during sign-out:", error);

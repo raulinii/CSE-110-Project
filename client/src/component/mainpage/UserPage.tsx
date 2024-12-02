@@ -3,6 +3,7 @@ import './UserPage.css';
 import logo from '../mainpage/images/logo.png';
 import {getUserInfo} from "../../services/firebaseServices"
 import {User} from "../../types/User"
+import SignOutButton from "../../components/Signout/SignOutButton"
 
 
 const UserPage: React.FC = () => {
@@ -79,6 +80,7 @@ if (error) return (
             </div>
           </div>
         </div>
+        <SignOutButton />
       </div>
     </div>
   );
