@@ -16,7 +16,7 @@ const FocusVideoView: React.FC = () => {
     const fetchMeditations = async () => {
       try {
         setLoading(true);
-        const data = await getMeditations("Focus", "test@gmail.com"); // Fetch meditations with category "Sleep"
+        const data = await getMeditations("Focus"); // Fetch meditations with category "Sleep"
         setMeditations(data);
       } catch (err) {
         setError("Failed to fetch meditations. Please try again later.");
@@ -51,7 +51,7 @@ const FocusVideoView: React.FC = () => {
                 <div 
                 key={video.id}
                 className='video-player-container'>
-                    <ReactPlayer url={video.link} />
+                    <ReactPlayer url={video.link}  />
                 </div>
             ))}
             </div>

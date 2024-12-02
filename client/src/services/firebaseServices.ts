@@ -1,11 +1,12 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebaseConfig"; // Import Firestore instance
+import { db, auth } from "../firebaseConfig"; // Import Firestore instance
 import { Meditation } from "../types/Meditation";
 import { User } from "../types/User";
 
 // Function to get meditations by category
-export const getMeditations = async (category: string, userEmail: string) => {
+export const getMeditations = async (category: string) => {
     try {
+        
         const q = query(collection(db, "meditations"), where("category", "==", category));
         const querySnapshot = await getDocs(q);
         const meditations = querySnapshot.docs.map((doc) => ({
@@ -13,6 +14,14 @@ export const getMeditations = async (category: string, userEmail: string) => {
             ...doc.data() as Meditation,
         }));
 
+        const currentUser = auth.currentUser;
+
+        if (!currentUser || !currentUser.email) {
+            throw new Error("No authenticated user or email not found.");
+        }
+
+        const userEmail = currentUser.email;
+        
         const userPreference = query(collection(db, "dummy"), where("Email", "==", userEmail));
         const userSnapshot = await getDocs(userPreference);
         const user = userSnapshot.docs[0].data() as User;
@@ -46,6 +55,30 @@ export const getMeditations = async (category: string, userEmail: string) => {
 
     } catch (error) {
         console.error("Error getting meditations: ", error);
+        throw error;
+    }
+};
+
+
+export const getUserInfo = async () => {
+    try {
+
+        const currentUser = auth.currentUser;
+
+        if (!currentUser || !currentUser.email) {
+            throw new Error("No authenticated user or email not found.");
+        }
+
+        const userEmail = currentUser.email;
+        
+        const userPreference = query(collection(db, "dummy"), where("Email", "==", userEmail));
+        const userSnapshot = await getDocs(userPreference);
+        const user = userSnapshot.docs[0].data() as User;
+        
+        return user;
+
+    } catch (error) {
+        console.error("Error getting user info: ", error);
         throw error;
     }
 };

@@ -5,11 +5,11 @@
   right: 2em;                   
   width: 270px;                  
   height: 60eh;               
-  background-color: navy;      
+  background-color: #182B49;      
   display: flex;              
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  padding: 2em;
   border-radius: 15px;  
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   color: white;               
@@ -44,9 +44,34 @@
   background-color: gold; 
 }
 
+<<<<<<< HEAD
 /* .nav-button.active {
   background-color: gold; 
 }    */
+=======
+.nav-button.active {
+  background-color: #FFCD00; 
+}   
+>>>>>>> welcome-popup
 .icon {
   font-size: 24px; 
 } 
+
+/* Global Dark Mode Styling */
+body.dark-mode {
+  background-color: #1a1a2e;
+  color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: #0b1423; /* Darker navbar background */
+}
+
+body.dark-mode .nav-button {
+  color: white;
+}
+
+body.dark-mode .nav-button.active {
+  background-color: #917501; /* Highlighted button in dark mode */
+}
+  
