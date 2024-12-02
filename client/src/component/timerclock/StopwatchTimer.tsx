@@ -10,6 +10,8 @@ const StopwatchTimer: React.FC = () => {
   const [mode, setMode] = useState("stopwatch");
   const [editingField, setEditingField] = useState<"hours" | "minutes" | "seconds" | null>(null);
   const [editingTodo, setEditingTodo] = useState(false);
+  const [tasks, setTasks] = useState<{ text: string; completed: boolean }[]>([]);
+  //const [editingTodo, setEditingTodo] = useState(false);
 
   useEffect(() => {
     if (!started) return;
@@ -73,6 +75,10 @@ const StopwatchTimer: React.FC = () => {
     else if (field === "seconds") setSeconds(Math.min(59, numValue));
   };
 
+  const updateTasks = (newTasks: { text: string; completed: boolean }[]) => {
+    setTasks(newTasks);
+  };
+
   return (
     <div className="stopwatch-timer">
       <div className="button-container">
@@ -82,7 +88,12 @@ const StopwatchTimer: React.FC = () => {
       </div>
 
       {editingTodo && (
-        <ToDoList isOpen={editingTodo} onClose={() => setEditingTodo(false)} />
+        <ToDoList
+          isOpen={editingTodo}
+          onClose={() => setEditingTodo(false)}
+          tasks={tasks} 
+          updateTasks={updateTasks} 
+        />
       )}
 
       <div className="stopwatch-timer-container">
