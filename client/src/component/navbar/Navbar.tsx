@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { FaHome, FaClock, FaUser, FaMoon, FaSun } from "react-icons/fa";
-import "./Navbar.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { FaHome, FaClock, FaUser } from "react-icons/fa";
+import "./Navbar.css"; // Ensure correct import
 
 interface NavItem {
   label: string;
@@ -16,16 +16,17 @@ const Navbar = () => {
     { label: "User", url: "/User", icon: <FaUser /> }
   ];
 
-  const navigate = useNavigate();
-  // const initialUrl = localStorage.getItem("activeUrl") || "/";
-  const [activeUrl, setActiveUrl] = useState<string>();
-  
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  // Track active item (optional)
+  const initialUrl = localStorage.getItem("activeUrl") || "/";
+  const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
+
   const handleNavClick = (url: string) => {
     setActiveUrl(url);
     localStorage.setItem("activeUrl", url);
     navigate(url); // Navigate to the new route
   };
-
 
   return (
     <nav className="navbar">
@@ -34,7 +35,7 @@ const Navbar = () => {
           <li key={item.url} className="nav-item">
             <button
               className={`nav-button ${activeUrl === item.url ? "active" : ""}`}
-              onClick={() => handleNavClick(item.url)}
+              onClick={() => handleNavClick(item.url)} 
             >
               <span className="icon">{item.icon}</span>
             </button>
@@ -44,5 +45,7 @@ const Navbar = () => {
     </nav>
   );
 };
+
+
 
 export default Navbar;

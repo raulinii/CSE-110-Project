@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login/Login'; // Import Login component
 import MainPageView from './views/MainPageView';
-import StopwatchTimer from './component/StopwatchTimer';
+import StopwatchTimer from './component/timerclock/StopwatchTimer';
 import Layout from './Layout';
 import UserPage from './component/mainpage/UserPage'; // Add this import
 import SleepVideoView from './views/SleepVideoView';
