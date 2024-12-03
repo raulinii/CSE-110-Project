@@ -24,8 +24,8 @@ jobs: # the things being executed
           node-version: '23.1.0'
       - name: Use API Key
         env:
-          API_KEY: ${{ secrets.API_KEY }}
-
+          API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          PROJECT_ID: ${{ secretes.FIREBASE_PROJECT_ID}}          
       - name: Install Dependencies and Run Tests in Client
         working-directory: ./client
         run: |
