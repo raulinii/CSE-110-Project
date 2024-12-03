@@ -1,17 +1,30 @@
-.theme-button{
-    background-color: transparent; /* Make button background transparent */
-    color: white;                  /* Set button text color to white */
+.theme-button {
+    background-color: #a9cffa;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
     position: fixed;            
-    top: 95%;                    
+    bottom: 20px;                    
     left: 70px;  
-    font-size: 25px;          
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #182B49; /* Dark color for light mode */
+}
+
+body.dark-mode .theme-button {
+    background-color: transparent;
+    color: #FFCD00; /* Gold color for dark mode */
+}
+
+.theme-button:hover {
+    transform: scale(1.1);
 }
 
 .music-button{
+    padding-top: 1.3mm;
     background-color: transparent;              
     border: none;
     cursor: pointer;
@@ -21,6 +34,10 @@
     top: 95%;                    
     left: 25px;  
     font-size: 25px;
+}
+
+.music-button:hover {
+    transform: scale(1.1);
 }
 
 .nav-button {

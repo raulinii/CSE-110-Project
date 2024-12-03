@@ -4,6 +4,8 @@ import logo from '../mainpage/images/logo.png';
 import {getUserInfo} from "../../services/firebaseServices"
 import {User} from "../../types/User"
 import SignOutButton from "../../components/Signout/SignOutButton"
+import ToggleMusicButton from '../toggleMusic/ToggleMusicButton';
+import { ToggleThemeButton } from '../toggleTheme/ToggleThemeButton';
 
 
 const UserPage: React.FC = () => {
@@ -80,9 +82,20 @@ if (error) return (
             </div>
           </div>
         </div>
-        <SignOutButton />
-      </div>
+        <div>
+            <SignOutButton />
+        </div>
     </div>
+    
+
+    <footer className="controls-wrapper">
+              <div className="controls-container">
+                  <ToggleMusicButton />
+                  <ToggleThemeButton />
+              </div>
+          </footer>
+  </div>
+
   );
 };
 

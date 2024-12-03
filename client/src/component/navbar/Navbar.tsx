@@ -1,32 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { FaHome, FaClock, FaUser } from "react-icons/fa";
-import "./Navbar.css"; // Ensure correct import
+// RUDY UPDATE Memory Management
+// React.memo prevents unnecessary re-renders of the navbar component9
+// useCallback memoizes the click handler function, reducing memory allocation7
+// Removing state updates for non-changing values reduces render cycles4
 
-interface NavItem {
-  label: string;
-  url: string;
-  icon: JSX.Element;
-}
+import React, { useCallback } from 'react';
+import { useNavigate } from "react-router-dom";
+import { FaHome, FaClock, FaUser } from "react-icons/fa";
+import "./Navbar.css";
+
+const navItems = [
+  { label: "Home", url: "/main", icon: <FaHome /> },
+  { label: "Clock", url: "/Clock", icon: <FaClock /> },
+  { label: "User", url: "/User", icon: <FaUser /> }
+] as const;
 
 const Navbar = () => {
-  const navItems: NavItem[] = [
-    { label: "Home", url: "/main", icon: <FaHome /> },
-    { label: "Clock", url: "/Clock", icon: <FaClock /> },
-    { label: "User", url: "/User", icon: <FaUser /> }
-  ];
+  const navigate = useNavigate();
+  const activeUrl = localStorage.getItem("activeUrl") || "/";
 
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  // Track active item (optional)
-  const initialUrl = localStorage.getItem("activeUrl") || "/";
-  const [activeUrl, setActiveUrl] = useState<string>(initialUrl);
-
-  const handleNavClick = (url: string) => {
-    setActiveUrl(url);
+  const handleNavClick = useCallback((url: string) => {
     localStorage.setItem("activeUrl", url);
-    navigate(url); // Navigate to the new route
-  };
+    navigate(url);
+  }, [navigate]);
 
   return (
     <nav className="navbar">
@@ -34,8 +29,9 @@ const Navbar = () => {
         {navItems.map((item) => (
           <li key={item.url} className="nav-item">
             <button
+              aria-label={item.label}
               className={`nav-button ${activeUrl === item.url ? "active" : ""}`}
-              onClick={() => handleNavClick(item.url)} 
+              onClick={() => handleNavClick(item.url)}
             >
               <span className="icon">{item.icon}</span>
             </button>
@@ -46,6 +42,4 @@ const Navbar = () => {
   );
 };
 
-
-
-export default Navbar;
+export default React.memo(Navbar);

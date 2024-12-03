@@ -1,55 +1,33 @@
 .user-page {
-  position: relative;
-  width: 100%;
   min-height: 100vh;
-  padding: 20px;
   background: linear-gradient(180deg, #F9F9F9 0%, #95CCFF 100%);
+  padding: 2rem;
+  position: relative;
 }
 
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: bold;
-  color: #2F678A;
-}
-
-.logo-image {
-  width: 40px;
-  height: 40px;
-  margin-right: 8px;
+body.dark-mode .user-page {
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f3460 100%);
 }
 
 .user-container {
-  max-width: 600px;
-  margin: 80px auto 0;
-  padding: 30px;
-  background-color: #f5dd7ba6;
+  background-color: #FFCD00;
+  padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  margin: 80px auto;
+  color: #182B49;
 }
 
-.loading, .error {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.2rem;
-  color: #182B49;
+body.dark-mode .user-container {
+  background-color: #917501;
+  color: white;
 }
 
 .profile-section {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
-}
-
-h2 {
-  color: #182B49;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
 .form-group {
@@ -59,7 +37,6 @@ h2 {
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #182B49;
   font-weight: bold;
 }
 
@@ -67,7 +44,6 @@ h2 {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
-  color: #182B49;
 }
 
 .preferences-grid {
@@ -82,34 +58,30 @@ h2 {
   border-radius: 4px;
 }
 
-.preference-item span {
-  font-weight: bold;
-  margin-right: 5px;
+
+
+.logout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #182B49;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* Dark mode styles */
-body.dark-mode .user-page {
-  background: linear-gradient(180deg, #1a1a2e 0%, #0f3460 100%);
+.logout-button:hover {
+  background-color: #2b4b80;
 }
 
-body.dark-mode .user-container {
-  background-color: #917501;
+body.dark-mode .logout-button {
+  background-color: #122036;
 }
 
-body.dark-mode h2,
-body.dark-mode .form-group label,
-body.dark-mode .info-display,
-body.dark-mode .preference-item {
-  color: #ffffff;
+body.dark-mode .logout-button:hover {
+  background-color: #1c3153;
 }
-
-body.dark-mode .info-display,
-body.dark-mode .preference-item {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .loading,
-body.dark-mode .error {
-  color: #ffffff;
-}
-

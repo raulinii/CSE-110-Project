@@ -15,152 +15,152 @@ const StopwatchTimer: React.FC = () => {
   const [tasks, setTasks] = useState<{ text: string; completed: boolean }[]>([]);
   //const [editingTodo, setEditingTodo] = useState(false);
 
-  useEffect(() => {
-    if (!started) return;
+    useEffect(() => {
+      if (!started) return;
 
-    const timer = setInterval(() => {
-      if (mode === "stopwatch") {
-        setSeconds((prev) => prev + 1);
-      } else if (mode === "timer") {
-        setSeconds((prev) => prev - 1);
+      const timer = setInterval(() => {
+        if (mode === "stopwatch") {
+          setSeconds((prev) => prev + 1);
+        } else if (mode === "timer") {
+          setSeconds((prev) => prev - 1);
+        }
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }, [started, mode]);
+
+    useEffect(() => {
+      if (seconds >= 60 && mode === "stopwatch") {
+        setMinutes((prev) => prev + 1);
+        setSeconds(0);
       }
-    }, 1000);
+      if (minutes >= 60 && mode === "stopwatch") {
+        setHours((prev) => prev + 1);
+        setMinutes(0);
+      }
 
-    return () => clearInterval(timer);
-  }, [started, mode]);
+      if (seconds < 0 && mode === "timer") {
+        if (minutes > 0) {
+          setMinutes((prev) => prev - 1);
+          setSeconds(59);
+        } else if (hours > 0) {
+          setHours((prev) => prev - 1);
+          setMinutes(59);
+          setSeconds(59);
+        } else {
+          setStarted(false);
+          alert("Time's up!");
+        }
+      }
+    }, [seconds, minutes, hours, mode]);
 
-  useEffect(() => {
-    if (seconds >= 60 && mode === "stopwatch") {
-      setMinutes((prev) => prev + 1);
+    const toggleMode = () => {
+      setMode((prev) => (prev === "stopwatch" ? "timer" : "stopwatch"));
+      reset();
+    };
+
+    const reset = () => {
       setSeconds(0);
-    }
-    if (minutes >= 60 && mode === "stopwatch") {
-      setHours((prev) => prev + 1);
       setMinutes(0);
-    }
+      setHours(0);
+      setStarted(false);
+    };
 
-    if (seconds < 0 && mode === "timer") {
-      if (minutes > 0) {
-        setMinutes((prev) => prev - 1);
-        setSeconds(59);
-      } else if (hours > 0) {
-        setHours((prev) => prev - 1);
-        setMinutes(59);
-        setSeconds(59);
-      } else {
-        setStarted(false);
-        alert("Time's up!");
-      }
-    }
-  }, [seconds, minutes, hours, mode]);
+    const handleFieldClick = (field: "hours" | "minutes" | "seconds") => {
+      setEditingField(field);
+    };
 
-  const toggleMode = () => {
-    setMode((prev) => (prev === "stopwatch" ? "timer" : "stopwatch"));
-    reset();
-  };
+    const handleFieldChange = (value: string, field: "hours" | "minutes" | "seconds") => {
+      const numValue = Math.max(0, Number(value)); // Ensure non-negative numbers
+      if (field === "hours") setHours(Math.min(99, numValue));
+      else if (field === "minutes") setMinutes(Math.min(59, numValue));
+      else if (field === "seconds") setSeconds(Math.min(59, numValue));
+    };
 
-  const reset = () => {
-    setSeconds(0);
-    setMinutes(0);
-    setHours(0);
-    setStarted(false);
-  };
+    const updateTasks = (newTasks: { text: string; completed: boolean }[]) => {
+      setTasks(newTasks);
+    };
 
-  const handleFieldClick = (field: "hours" | "minutes" | "seconds") => {
-    setEditingField(field);
-  };
+    return (
+      <div className="stopwatch-timer">
+        <div className="button-container">
+          <button className="todo" onClick={() => setEditingTodo(true)}>
+            To-Do List
+          </button>
+        </div>
 
-  const handleFieldChange = (value: string, field: "hours" | "minutes" | "seconds") => {
-    const numValue = Math.max(0, Number(value)); // Ensure non-negative numbers
-    if (field === "hours") setHours(Math.min(99, numValue));
-    else if (field === "minutes") setMinutes(Math.min(59, numValue));
-    else if (field === "seconds") setSeconds(Math.min(59, numValue));
-  };
+        {editingTodo && (
+          <ToDoList
+            isOpen={editingTodo}
+            onClose={() => setEditingTodo(false)}
+            tasks={tasks} 
+            updateTasks={updateTasks} 
+          />
+        )}
 
-  const updateTasks = (newTasks: { text: string; completed: boolean }[]) => {
-    setTasks(newTasks);
-  };
-
-  return (
-    <div className="stopwatch-timer">
-      <div className="button-container">
-        <button className="todo" onClick={() => setEditingTodo(true)}>
-          To-Do List
-        </button>
-      </div>
-
-      {editingTodo && (
-        <ToDoList
-          isOpen={editingTodo}
-          onClose={() => setEditingTodo(false)}
-          tasks={tasks} 
-          updateTasks={updateTasks} 
-        />
-      )}
-
-      <ToggleMusicButton />
-      <ToggleThemeButton />
-      <div className="stopwatch-timer-container">
-        <div className="time-display">
-          {editingField === "hours" ? (
-            <input
-              className="time-input"
-              type="number"
-              value={hours}
-              min="0"
-              max="99"
-              data-testid="hours-input"
-              onBlur={() => setEditingField(null)} // Exit edit mode on blur
-              onChange={(e) => handleFieldChange(e.target.value, "hours")}
-              autoFocus
-            />
-          ) : (
-            <span className="time"  
-            data-testid="hours-span"
-            onClick={() => handleFieldClick("hours")}>
-              {String(hours).padStart(2, "0")}
-            </span>
-          )}
-          :
-          {editingField === "minutes" ? (
-            <input
-              className="time-input"
-              type="number"
-              value={minutes}
-              min="0"
-              max="59"
-              data-testid="minutes-input"
-              onBlur={() => setEditingField(null)}
-              onChange={(e) => handleFieldChange(e.target.value, "minutes")}
-              autoFocus
-            />
-          ) : (
-            <span className="time" 
-            data-testid="minutes-span"
-            onClick={() => handleFieldClick("minutes")}>
-              {String(minutes).padStart(2, "0")}
-            </span>
-          )}
-          :
-          {editingField === "seconds" ? (
-            <input
-              className="time-input"
-              type="number"
-              value={seconds}
-              min="0"
-              max="59"
-              data-testid="seconds-input"
-              onBlur={() => setEditingField(null)}
-              onChange={(e) => handleFieldChange(e.target.value, "seconds")}
-              autoFocus
-            />
-          ) : (
-            <span className="time" 
-            data-testid="seconds-span"
-            onClick={() => handleFieldClick("seconds")}>
-              {String(seconds).padStart(2, "0")}
-            </span>
-          )}
+        <ToggleMusicButton />
+        <ToggleThemeButton />
+        <div className="stopwatch-timer-container">
+          <div className="time-display">
+            {editingField === "hours" ? (
+              <input
+                className="time-input"
+                type="number"
+                value={hours}
+                min="0"
+                max="99"
+                data-testid="hours-input"
+                onBlur={() => setEditingField(null)} // Exit edit mode on blur
+                onChange={(e) => handleFieldChange(e.target.value, "hours")}
+                autoFocus
+              />
+            ) : (
+              <span className="time"  
+              data-testid="hours-span"
+              onClick={() => handleFieldClick("hours")}>
+                {String(hours).padStart(2, "0")}
+              </span>
+            )}
+            :
+            {editingField === "minutes" ? (
+              <input
+                className="time-input"
+                type="number"
+                value={minutes}
+                min="0"
+                max="59"
+                data-testid="minutes-input"
+                onBlur={() => setEditingField(null)}
+                onChange={(e) => handleFieldChange(e.target.value, "minutes")}
+                autoFocus
+              />
+            ) : (
+              <span className="time" 
+              data-testid="minutes-span"
+              onClick={() => handleFieldClick("minutes")}>
+                {String(minutes).padStart(2, "0")}
+              </span>
+            )}
+            :
+            {editingField === "seconds" ? (
+              <input
+                className="time-input"
+                type="number"
+                value={seconds}
+                min="0"
+                max="59"
+                data-testid="seconds-input"
+                onBlur={() => setEditingField(null)}
+                onChange={(e) => handleFieldChange(e.target.value, "seconds")}
+                autoFocus
+              />
+            ) : (
+              <span className="time" 
+              data-testid="seconds-span"
+              onClick={() => handleFieldClick("seconds")}>
+                {String(seconds).padStart(2, "0")}
+              </span>
+            )}
         </div>
         <div className="buttons">
           <button className="timer-btn" onClick={toggleMode}>
@@ -176,3 +176,6 @@ const StopwatchTimer: React.FC = () => {
 };
 
 export default StopwatchTimer;
+
+
+

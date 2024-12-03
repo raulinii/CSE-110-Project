@@ -6,28 +6,25 @@ import { FaHome, FaClock, FaUser, FaMoon, FaSun } from "react-icons/fa";
 
 
 
-export function ToggleThemeButton( ){
-
-    const [darkMode, setDarkMode] = useState<boolean>(
+export function ToggleThemeButton() {
+  const [darkMode, setDarkMode] = useState<boolean>(
       localStorage.getItem("darkMode") === "true"
-    );
-  
-    useEffect(() => {
+  );
+
+  useEffect(() => {
       document.body.classList.toggle("dark-mode", darkMode);
       localStorage.setItem("darkMode", darkMode.toString());
-    }, [darkMode]);
-  
-  
-    const toggleDarkMode = () => {
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
       setDarkMode(!darkMode);
-    };
-  
-    return(
-      <div>
-          <button className="theme-button" onClick={toggleDarkMode}>
-              {darkMode ? <FaMoon /> : <FaSun />}
-          </button>
-      </div>
-    )    
+  };
+
+  return (
+      <button className="theme-button" onClick={toggleDarkMode}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+      </button>
+  );
 }
 
+  

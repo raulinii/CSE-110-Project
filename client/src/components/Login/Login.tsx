@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebaseConfig"; // Adjust the path based on your folder structure
+import { auth } from "../firebaseConfig"; // Adjust the path based on your folder structure
 import "./LoginStyle.css";
 
 const Login: React.FC = () => {

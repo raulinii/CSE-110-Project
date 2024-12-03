@@ -33,10 +33,18 @@
   }
 
   h2 {
+    text-align: center;
     font-family: 'Cinzel Decorative', serif; 
     font-weight: bold;
     font-size: large;
     color: #2F678A; 
+  }
+
+  body.dark-mode h2 {
+    font-family: 'Cinzel Decorative', serif; 
+    font-weight: bold;
+    font-size: large;
+    color: #ffffff; 
   }
 
   h4 {

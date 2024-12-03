@@ -1,5 +1,5 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db, auth } from "../firebaseConfig"; // Import Firestore instance
+import { db, auth } from "../components/firebaseConfig"; // Import Firestore instance
 import { Meditation } from "../types/Meditation";
 import { User } from "../types/User";
 

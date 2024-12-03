@@ -1,253 +1,115 @@
+/* Base styles matching MainPage */
 .stopwatch-timer {
+  position: relative;
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  padding: 20px;
   background: linear-gradient(180deg, #F9F9F9 0%, #95CCFF 100%);
-  padding-bottom: 40px;
 }
 
+/* Dark mode background */
+body.dark-mode .stopwatch-timer {
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f3460 100%);
+}
+
+/* Timer container styling matching categories-wrapper */
 .stopwatch-timer-container {
+  padding: 30px;
   background-color: #FFCD00;
-  padding: 20px;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  width: 65%;
-  max-width: 600px;
-  height: auto;
+  margin-left: 550px;
+  margin-top: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.time-display {
-  font-size: 3rem;
-  font-weight: bolder;
-  color: #2F678A;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  width: 80%;
+  max-width: 700px;
+  transition: background-color 0.3s ease;
 }
 
-.time {
-  cursor: pointer;
-  padding: 8px 12px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  transition: border-color 0.3s, background-color 0.3s;
-  flex: 1;
-  text-align: center;
+/* Dark mode timer container */
+body.dark-mode .stopwatch-timer-container {
+  background-color: #917501;
 }
 
-.time:hover {
-  border-color: #007bff;
-  background-color: rgba(0, 123, 255, 0.1);
-}
-
-.time-input {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #2F678A;
-  width: 90px;
-  height: auto;
-  text-align: center;
-  border: 2px solid #2F678A;
-  border-radius: 8px;
-  background-color: transparent;
-  outline: none;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  transition: border-color 0.3s, background-color 0.3s, transform 0.2s;
-}
-
-.time-input:focus {
-  border-color: #007bff;
-  background-color: transparent;
-}
-
-.time-input::placeholder {
-  color: #2F678A;
-  opacity: 0.7;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
-  -webkit-appearance: none; /* Chrome/Edge */
-  appearance: none; /* Disable spin buttons */
-}
-
-.buttons {
+/* Timer buttons matching category-box style */
+/* .buttons {
   display: flex;
-  justify-content: space-around;
-  gap: 15px;
-  margin-top: 20px;
-}
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+} */
 
-/* Timer button styled with navy blue */
-.timer-btn {
-  background-color: #182B49; /* Navy Blue */
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.timer-btn:hover {
-  background-color: #2F678A; /* Lighter blue for hover */
-}
-
-.timer-btn:active {
-  transform: scale(0.95);
-}
-
-/* Reset button styled as a slot */
-.reset-slot-btn {
-  background-color: #dc3545;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 14px 20px;
-  border: 2px solid transparent;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.reset-slot-btn:hover {
-  background-color: #c82333;
-}
-
-.reset-slot-btn:active {
-  transform: scale(0.95);
-}
-
-/* Standard stopwatch button styling */
-.stopwatch-btn {
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.stopwatch-btn:hover {
-  background-color: #0056b3;
-}
-
-.stopwatch-btn:active {
-  transform: scale(0.95);
-}
-
-.toggle-mode-btn {
-  background-color: #FFCD00;
-  color: #182B49;
-  border: 2px solid #182B49;
-}
-
-.toggle-mode-btn:hover {
-  background-color: #FFD740;
-}
-
-.journal-btn {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 15px 30px;
+.timer-btn, .stopwatch-btn, .reset-slot-btn {
   background-color: #182B49;
   color: white;
-  border: 2px solid #182B49;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-bottom: 10px;
-}
-
-.journal-btn:hover {
-  background-color: #2F678A;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .stopwatch-timer-container {
-    padding: 15px;
-  }
-
-  .time-display {
-    font-size: 2.5rem;
-  }
-
-  .time-input {
-    width: 80px;
-  }
-
-  .stopwatch-btn {
-    font-size: 1rem;
-    padding: 12px 18px;
-  }
-
-  .journal-btn {
-    font-size: 1.3rem;
-    padding: 12px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .time-display {
-    font-size: 2rem;
-  }
-
-  .time-input {
-    width: 70px;
-  }
-
-  .stopwatch-btn {
-    font-size: 0.9rem;
-    padding: 10px 16px;
-  }
-
-  .journal-btn {
-    font-size: 1.1rem;
-    padding: 10px 20px;
-  }
-}
-
-/* To-Do List button styled as a slot with navy blue */
-.todo {
-  background-color: #182B49; /* Navy blue background */
-  color: white;
+  border: none;
+  padding: 2rem 3.2rem;
+  margin: 0.5rem;  /* Adds margin around each button */
+  border-radius: 12px;
   font-size: 1.2rem;
-  font-weight: bold;
-  padding: 14px 20px;
-  border: 2px solid transparent;
-  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
 }
 
-.todo:hover {
-  background-color: #2F678A; /* Lighter shade of navy for hover */
+.timer-btn:hover, .stopwatch-btn:hover, .reset-slot-btn:hover {
+  transform: scale(1.1);
 }
 
-.todo:active {
-  transform: scale(0.95); /* Button press effect */
+/* Dark mode buttons */
+body.dark-mode .timer-btn
+body.dark-mode .stopwatch-btn,
+body.dark-mode .reset-slot-btn {
+  background-color: #122036;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
+body.dark-mode .timer-btn:hover,
+body.dark-mode .stopwatch-btn:hover,
+body.dark-mode .reset-slot-btn:hover {
+  background-color: #1c3153;
+}
 
+/* Todo list styling */
+.todo-list-container {
+  background-color: #FFCD00;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .todo-list-container {
+  background-color: #917501;
+  color: white;
+}
+
+/* Time display styling */
+.time-display {
+  color: #182B49;
+}
+
+body.dark-mode .time-display {
+  color: white;
+}
+
+/* Todo button styling */
+.todo {
+  background-color: #182B49;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .todo {
+  background-color: #122036;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .todo:hover {
+  background-color: #1c3153;
+}
