@@ -41,7 +41,9 @@ CSE-110-Project\client\src\
 │   └── VideoPlayerView.tsx: Component for playing videos in the app.
 ├── component\
 │   ├── StopwatchTimer.css: Stylesheet for the stopwatch timer component.
-│   ├── StopwatchTimer.js: Component implementing a stopwatch and timer.
+│   ├── StopwatchTimer.tsx: Component implementing a stopwatch and timer.
+│   ├── ToDoList.tsx: Component implementing a to-do list.
+│   ├── ToDoList.css: Stylesheet for to do list. 
 │   ├── ToggleButton.css: Styles for generic toggle buttons.
 │   ├── VideoPlayer.css: Stylesheet for the video player component.
 │   ├── VideoPlayer.tsx: Component for rendering a customizable video player.
