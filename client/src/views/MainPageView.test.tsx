@@ -95,3 +95,14 @@ test("Route successfully to the Focus Player Page", () => {
     expect(screen.getByText("Focus Meditations")).toBeInTheDocument();
                     
         });
+
+test("Make sure the logo is rendered ", () => {
+    render(
+        <MemoryRouter>
+        <MainPage />
+        </MemoryRouter>)
+    
+    const Logo = screen.getByText("Mindful U");
+    expect(Logo).toBeInTheDocument();                            
+                });
+
