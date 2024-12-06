@@ -48,7 +48,7 @@ body.dark-mode .main-page {
 } */
 
 .categories-wrapper {
-  padding: 40px;
+  padding: 50px;
   background-color: #FFCD00;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -110,6 +110,7 @@ body.dark-mode .categories-wrapper {
 }
 
 .category-box {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   background-color: #182B49;
   color: white;
   border: none;
@@ -122,9 +123,12 @@ body.dark-mode .categories-wrapper {
   height: 180px;
 }
 
+.category-box:hover {
+  background-color: #30548d;
+}
+
 body.dark-mode .category-box {
   background-color: #122036;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 body.dark-mode .category-box:hover {
   background-color: #1c3153;

@@ -15,9 +15,11 @@ body.dark-mode .stopwatch-timer {
 /* Timer container styling matching categories-wrapper */
 .stopwatch-timer-container {
   padding: 30px;
+  font-weight: bolder; 
+  font-size: xx-large;
   background-color: #FFCD00;
   border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 30%);
   margin-left: 550px;
   margin-top: 350px;
   display: flex;
@@ -45,6 +47,7 @@ body.dark-mode .stopwatch-timer-container {
 .timer-btn, .stopwatch-btn, .reset-slot-btn {
   background-color: #182B49;
   color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   border: none;
   padding: 2rem 3.2rem;
   margin: 0.5rem;  /* Adds margin around each button */
@@ -54,22 +57,51 @@ body.dark-mode .stopwatch-timer-container {
   transition: all 0.3s ease;
 }
 
-.timer-btn:hover, .stopwatch-btn:hover, .reset-slot-btn:hover {
+.reset-slot-btn {
+  background-color: #5e1d1d;
+  color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  border: none;
+  padding: 2rem 3.2rem;
+  margin: 0.5rem;  /* Adds margin around each button */
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timer-btn:hover, .stopwatch-btn:hover {
   transform: scale(1.1);
+  background-color: #284d88;
+}
+
+.reset-slot-btn:hover {
+  transform: scale(1.1);
+  background-color: #b13535;
 }
 
 /* Dark mode buttons */
-body.dark-mode .timer-btn
-body.dark-mode .stopwatch-btn,
-body.dark-mode .reset-slot-btn {
+body.dark-mode .timer-btn{
   background-color: #122036;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+body.dark-mode .stopwatch-btn{
+  background-color: #122036;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+body.dark-mode .reset-slot-btn {
+  background-color: #361212;
+  /* #05090f */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
 body.dark-mode .timer-btn:hover,
-body.dark-mode .stopwatch-btn:hover,
-body.dark-mode .reset-slot-btn:hover {
+body.dark-mode .stopwatch-btn:hover{
   background-color: #1c3153;
+}
+
+body.dark-mode .reset-slot-btn:hover {
+  background-color: darkred;
 }
 
 /* Todo list styling */
@@ -96,6 +128,7 @@ body.dark-mode .time-display {
 /* Todo button styling */
 .todo {
   background-color: #182B49;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -106,10 +139,10 @@ body.dark-mode .time-display {
 }
 
 body.dark-mode .todo {
-  background-color: #122036;
+  background-color: #8c7526;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
 body.dark-mode .todo:hover {
-  background-color: #1c3153;
+  background-color: #c5a438;
 }

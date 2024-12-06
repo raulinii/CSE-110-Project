@@ -15,7 +15,7 @@
 }
 
 body.dark-mode .theme-button {
-    background-color: transparent;
+    background-color: #1b3259;
     color: #FFCD00; /* Gold color for dark mode */
 }
 
